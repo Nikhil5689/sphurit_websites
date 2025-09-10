@@ -1,0 +1,61 @@
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3" aria-label="Sphurit home">
+            <img src="assets/logo.png" alt="Sphurit Logo" class="h-10 w-auto" onerror="this.src='https://img.icons8.com/ios-filled/100/e25101/s-logo.png'">
+            <span class="font-semibold text-gray-900">Sphurit</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700" aria-label="Primary navigation">
+            <a href="index.html" class="nav-link relative hover:text-[#e25101] transition-colors" data-page="home">Home</a>
+            <a href="about.html" class="nav-link relative hover:text-[#e25101] transition-colors" data-page="about">About</a>
+            <a href="services.html" class="nav-link relative hover:text-[#e25101] transition-colors" data-page="services">Services</a>
+            <a href="portfolio.html" class="nav-link relative hover:text-[#e25101] transition-colors" data-page="portfolio">Portfolio</a>
+            <a href="contact.html" class="nav-link relative hover:text-[#e25101] transition-colors" data-page="contact">Contact</a>
+            <a href="#" class="nav-link relative hover:text-[#e25101] transition-colors" data-page="blog">Blog</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+            <a href="contact.html" class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#e25101] to-[#ff7a1a] text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                Enquire
+            </a>
+        </div>
+
+        <button id="menu-btn" class="md:hidden p-2 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e25101]" aria-label="Toggle menu" aria-expanded="false">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-lg">
+        <nav class="px-4 py-4 space-y-1" aria-label="Mobile navigation">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-gray-800 hover:bg-gray-50">Home</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-gray-800 hover:bg-gray-50">About</a>
+            <a href="services.html" class="block px-3 py-2 rounded-md text-gray-800 hover:bg-gray-50">Services</a>
+            <a href="portfolio.html" class="block px-3 py-2 rounded-md text-gray-800 hover:bg-gray-50">Portfolio</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-gray-800 hover:bg-gray-50">Contact</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-gray-800 hover:bg-gray-50">Blog</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #e25101, #ff7a1a);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+.nav-link.active {
+    color: #e25101;
+    font-weight: 600;
+}
+</style>

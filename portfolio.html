@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Case Studies & Work | Sphurit Technologies</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #e25101;
+            --accent-2: #ff7a1a;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 3D Effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+        
+        .fade-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }0.9,0.2,1);
+        }
+        
+        .fade-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accent Text Styling */
+        .accent-first-letter {
+            font-size: 1.2em;
+            color: var(--accent);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* Hero Typography */
+        .hero-heading {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+        }
+
+        /* Filter Buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(226, 81, 1, 0.3);
+        }
+
+        /* Counter Animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Curved Top Cards */
+        .curved-top {
+            border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .card-3d {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative overflow-hidden min-h-[60vh] flex items-center">
+            <!-- Background Video -->
+            <video class="absolute inset-0 w-full h-full object-cover -z-20" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+                <source src="assets/hero-loop.mp4" type="video/mp4">
+                <source src="https://cdn.pixabay.com/vimeo/294398921/pexels-artem-podrez-5752729-1080p-2-0a04f3b2d0.mp4" type="video/mp4">
+            </video>
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-white/60 backdrop-blur-sm -z-10"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h1 class="hero-heading font-bold italic text-black mb-6 fade-up">
+                        Portfolio of Work — Crafted for Growth
+                    </h1>
+                    <p class="text-xl text-gray-700 mb-4 fade-up">Case studies, videos, websites</p>
+                    <p class="text-lg text-gray-600 mb-8 fade-up">Sphurit Growth & Performance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEBSITES SECTION -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        <span class="accent-first-letter">W</span>ebsites We've Built
+                    </h2>
+                    <p class="text-lg text-gray-600">Fast, conversion-focused websites that drive results</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up">
+                        <div class="curved-top bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
+                            <div class="flex items-center justify-between">
+                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-bold">M</span>
+                                </div>
+                                <span class="text-xs bg-white/20 px-2 py-1 rounded">Manufacturing</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">MetalCorp Industries</h3>
+                            <p class="text-gray-600 text-sm mb-4">B2B manufacturing website with lead generation focus</p>
+                            <div class="flex items-center justify-between">
+                                <a href="#" class="text-[var(--accent)] font-semibold text-sm hover:underline">Visit Site →</a>
+                                <div class="text-xs text-gray-500">95 PageSpeed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up">
+                        <div class="curved-top bg-gradient-to-r from-green-500 to-green-600 p-4 text-white">
+                            <div class="flex items-center justify-between">
+                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-bold">R</span>
+                                </div>
+                                <span class="text-xs bg-white/20 px-2 py-1 rounded">Real Estate</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Residency Heights</h3>
+                            <p class="text-gray-600 text-sm mb-4">Luxury residential project with virtual tours</p>
+                            <div class="flex items-center justify-between">
+                                <a href="#" class="text-[var(--accent)] font-semibold text-sm hover:underline">Visit Site →</a>
+                                <div class="text-xs text-gray-500">92 PageSpeed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up">
+                        <div class="curved-top bg-gradient-to-r from-purple-500 to-purple-600 p-4 text-white">
+                            <div class="flex items-center justify-between">
+                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-bold">S</span>
+                                </div>
+                                <span class="text-xs bg-white/20 px-2 py-1 rounded">SaaS</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">StartupFlow</h3>
+                            <p class="text-gray-600 text-sm mb-4">SaaS platform with conversion-optimized landing</p>
+                            <div class="flex items-center justify-between">
+                                <a href="#" class="text-[var(--accent)] font-semibold text-sm hover:underline">Visit Site →</a>
+                                <div class="text-xs text-gray-500">98 PageSpeed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO FILTERS -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        Our <span class="accent-first-letter">W</span>ork
+                    </h2>
+                    <p class="text-lg text-gray-600">Creative campaigns and content that drive engagement</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12 fade-up">
+                    <button class="filter-btn px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-semibold active" data-filter="all">
+                        All
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-semibold" data-filter="corporate-videos">
+                        Corporate Videos
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-semibold" data-filter="reels">
+                        Reels
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full bg-gray-100 text-gray-700 font-semibold" data-filter="creative-imagery">
+                        Creative Imagery
+                    </button>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Corporate Videos -->
+                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="corporate-videos">
+                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop" alt="Corporate Video" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">Manufacturing Excellence</h3>
+                            <p class="text-gray-600 text-sm">Corporate video showcasing industrial capabilities</p>
+                        </div>
+                    </div>
+
+                    <!-- Reels -->
+                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="reels">
+                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="Social Reel" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">Product Launch Reel</h3>
+                            <p class="text-gray-600 text-sm">Engaging social media content for product reveal</p>
+                        </div>
+                    </div>
+
+                    <!-- Creative Imagery -->
+                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="creative-imagery">
+                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop" alt="Creative Design" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">Brand Identity Design</h3>
+                            <p class="text-gray-600 text-sm">Complete visual identity system for tech startup</p>
+                        </div>
+                    </div>
+
+                    <!-- More items... -->
+                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="corporate-videos">
+                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop" alt="Corporate Video" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">Real Estate Showcase</h3>
+                            <p class="text-gray-600 text-sm">Luxury property walkthrough and testimonials</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="reels">
+                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop" alt="Social Reel" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">Behind the Scenes</h3>
+                            <p class="text-gray-600 text-sm">Manufacturing process showcase reel</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="creative-imagery">
+                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" alt="Creative Design" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">Product Photography</h3>
+                            <p class="text-gray-600 text-sm">E-commerce ready product shots with lifestyle context</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERFORMANCE MARKETING RESULTS -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        <span class="accent-first-letter">P</span>erformance Marketing Results
+                    </h2>
+                    <p class="text-lg text-gray-600">Real numbers from real campaigns</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-3d glass rounded-2xl p-8 text-center shadow-lg fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">📈</div>
+                        <div class="text-3xl font-bold text-[var(--accent)] counter mb-2" data-counter="2500000">0</div>
+                        <div class="text-gray-600 font-semibold">Total Reach</div>
+                        <div class="text-sm text-gray-500 mt-2">Across all campaigns</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-2xl p-8 text-center shadow-lg fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">🎯</div>
+                        <div class="text-3xl font-bold text-[var(--accent)] counter mb-2" data-counter="15000">0</div>
+                        <div class="text-gray-600 font-semibold">Quality Leads</div>
+                        <div class="text-sm text-gray-500 mt-2">Generated this year</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-2xl p-8 text-center shadow-lg fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">💰</div>
+                        <div class="text-3xl font-bold text-[var(--accent)] counter mb-2" data-counter="850">0</div>
+                        <div class="text-gray-600 font-semibold">Conversions</div>
+                        <div class="text-sm text-gray-500 mt-2">High-value conversions</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BRANDS WE HANDLE -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        <span class="accent-first-letter">B</span>rands We Handle
+                    </h2>
+                    <p class="text-lg text-gray-600">Trusted by industry leaders across sectors</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-8">
+                    <div class="card-3d glass rounded-xl p-6 text-center shadow-lg fade-up">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xl font-bold text-gray-600">M</span>
+                        </div>
+                        <div class="text-sm font-semibold">MetalCorp</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-xl p-6 text-center shadow-lg fade-up">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xl font-bold text-gray-600">R</span>
+                        </div>
+                        <div class="text-sm font-semibold">Residency</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-xl p-6 text-center shadow-lg fade-up">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xl font-bold text-gray-600">S</span>
+                        </div>
+                        <div class="text-sm font-semibold">StartupFlow</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-xl p-6 text-center shadow-lg fade-up">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xl font-bold text-gray-600">T</span>
+                        </div>
+                        <div class="text-sm font-semibold">TechVision</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-xl p-6 text-center shadow-lg fade-up">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xl font-bold text-gray-600">I</span>
+                        </div>
+                        <div class="text-sm font-semibold">InnovateCorp</div>
+                    </div>
+
+                    <div class="card-3d glass rounded-xl p-6 text-center shadow-lg fade-up">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xl font-bold text-gray-600">G</span>
+                        </div>
+                        <div class="text-sm font-semibold">GrowthLab</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENT TESTIMONIALS -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        What Our <span class="accent-first-letter">C</span>lients Say
+                    </h2>
+                    <p class="text-lg text-gray-600">Real feedback from real partnerships</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-3d glass rounded-2xl p-8 shadow-lg fade-up">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop&crop=face" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="font-semibold">Rajesh Kumar</div>
+                                <div class="text-sm text-gray-600">CEO, MetalCorp Industries</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Sphurit transformed our digital presence completely. Our lead quality improved by 90% and we're now getting inquiries from global markets."</p>
+                    </div>
+
+                    <div class="card-3d glass rounded-2xl p-8 shadow-lg fade-up">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=100&auto=format&fit=crop&crop=face" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="font-semibold">Priya Sharma</div>
+                                <div class="text-sm text-gray-600">Marketing Head, Residency Heights</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"The pre-launch campaign generated 500+ qualified leads before we even broke ground. Their strategy-first approach really works."</p>
+                    </div>
+
+                    <div class="card-3d glass rounded-2xl p-8 shadow-lg fade-up">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop&crop=face" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="font-semibold">Amit Patel</div>
+                                <div class="text-sm text-gray-600">Founder, StartupFlow</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"From zero to 10K users in 6 months. Sphurit built our entire growth engine from scratch with measurable results at every step."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold italic text-white mb-6 fade-up">
+                    Ready to <span style="font-size: 1.2em;">J</span>oin Our Success Stories?
+                </h2>
+                <p class="text-xl text-white/90 mb-8 fade-up">
+                    Let's create your next case study together.
+                </p>
+                
+                <!-- Counters in CTA -->
+                <div class="grid grid-cols-2 gap-6 mb-8 fade-up">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white counter" data-counter="2500000">0</div>
+                        <div class="text-sm text-white/80">Total Reach</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white counter" data-counter="15000">0</div>
+                        <div class="text-sm text-white/80">Quality Leads</div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 fade-up">
+                    <a href="contact.html" class="card-3d px-8 py-4 rounded-xl bg-white text-[var(--accent)] font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
+                        Start Your Project
+                    </a>
+                    <a href="services.html" class="card-3d px-8 py-4 rounded-xl border-2 border-white text-white font-semibold hover:bg-white hover:text-[var(--accent)] transform hover:scale-105 transition-all">
+                        View Services
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Include HTML function
+        function includeHTML(selector, url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector(selector).innerHTML = data;
+                    // Set active nav link
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('data-page') === 'portfolio') {
+                            link.classList.add('active');
+                        }
+                    });
+                    // Initialize mobile menu
+                    initMobileMenu();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Initialize mobile menu
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', !isHidden);
+                });
+            }
+        }
+
+        // Portfolio filtering
+        function initPortfolioFilter() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter items
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.classList.add('in-view');
+                            }, 100);
+                        } else {
+                            item.style.display = 'none';
+                            item.classList.remove('in-view');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Animate numbers with requestAnimationFrame
+        function animateNumber(element, target, duration = 2000) {
+            const start = 0;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease out function
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (target - start) * easeOut);
+                
+                element.textContent = current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Setup counter observer
+        function setupCountObserver() {
+            const counters = document.querySelectorAll('[data-counter]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.dataset.counter);
+                        animateNumber(entry.target, target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // Initialize 3D card effects
+        function init3DCards() {
+            document.querySelectorAll('.card-3d').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+        }
+
+        // Fade up animation observer
+        function setupFadeUpObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            includeHTML('#navbar-placeholder', 'navbar.html');
+            includeHTML('#footer-placeholder', 'footer.html');
+            initPortfolioFilter();
+            setupCountObserver();
+            init3DCards();
+            setupFadeUpObserver();
+        });
+
+        // Reduced motion support
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>

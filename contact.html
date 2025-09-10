@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Let's Start Your Growth Journey | Sphurit Technologies</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #e25101;
+            --accent-2: #ff7a1a;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Floating Labels */
+        .floating-label {
+            position: relative;
+        }
+        
+        .floating-label label {
+            position: absolute;
+            left: 12px;
+            top: 16px;
+            font-size: 0.9rem;
+            color: #6b7280;
+            pointer-events: none;
+            transform-origin: left top;
+            transition: all 0.2s ease;
+        }
+        
+        .floating-label input:focus + label,
+        .floating-label textarea:focus + label,
+        .floating-label input:not(:placeholder-shown) + label,
+        .floating-label textarea:not(:placeholder-shown) + label {
+            transform: translateY(-10px) scale(0.85);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+        
+        .fade-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accent Text Styling */
+        .accent-first-letter {
+            font-size: 1.2em;
+            color: var(--accent);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* Hero Typography */
+        .hero-heading {
+            font-size: clamp(2.6rem, 3.4vw, 3.6rem);
+            line-height: 1.02;
+        }
+
+        /* Success Animation */
+        @keyframes popIn {
+            from {
+                transform: translateY(8px) scale(0.98);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .pop-in {
+            animation: popIn 0.28s ease both;
+        }
+
+        /* Click to copy effect */
+        .copy-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .copy-effect::after {
+            content: 'Copied!';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            pointer-events: none;
+        }
+        
+        .copy-effect.copied::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .tilt-card {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative overflow-hidden py-20 lg:py-28">
+            <!-- Background Video -->
+            <video class="absolute inset-0 w-full h-full object-cover -z-20" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+                <source src="assets/hero-loop.mp4" type="video/mp4">
+                <source src="https://cdn.pixabay.com/vimeo/294398921/pexels-artem-podrez-5752729-1080p-2-0a04f3b2d0.mp4" type="video/mp4">
+            </video>
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-white/65 backdrop-blur-sm -z-10"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto">
+                    <p class="text-sm font-medium text-gray-700 fade-up">Contact</p>
+                    <h1 class="mt-3 hero-heading font-extrabold italic text-black fade-up">
+                        Let's Start Manifesting Your Brand Success.
+                    </h1>
+                    <p class="mt-3 text-lg text-gray-700 fade-up">
+                        We're just a message away from transforming your digital presence.
+                    </p>
+
+                    <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 fade-up">
+                        <a href="#contact-form" class="tilt-card inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
+                            Book a Call
+                        </a>
+                        <a href="#contact-form" class="tilt-card inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-gray-200 text-gray-800 font-semibold hover:shadow-lg transform hover:scale-105 transition-all">
+                            Send Message
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT METHODS -->
+        <section class="bg-white py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl sm:text-4xl font-bold italic text-black mb-3">
+                        Let's Talk <span class="accent-first-letter">G</span>rowth
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Choose WhatsApp, email, or a call — we'll respond fast.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <a href="https://wa.me/918329887691?text=Hi%20Sphurit%2C%20let%27s%20talk" target="_blank" rel="noopener noreferrer" class="tilt-card p-6 rounded-xl glass border border-gray-200 flex flex-col items-center text-center hover:border-[var(--accent)] group transition-all shadow-lg fade-up">
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4 group-hover:bg-green-500 transition-colors">
+                            <svg viewBox="0 0 24 24" class="w-8 h-8 text-green-600 group-hover:text-white transition-colors" fill="currentColor">
+                                <path d="M12 2a10 10 0 0 0-8.66 15.06L2 22l5.06-1.34A10 10 0 1 0 12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="font-semibold">WhatsApp</div>
+                        <div class="text-sm text-gray-500 mt-2">Instant messages</div>
+                    </a>
+
+                    <button id="copy-phone" class="tilt-card p-6 rounded-xl glass border border-gray-200 flex flex-col items-center text-center hover:border-[var(--accent)] group transition-all shadow-lg fade-up copy-effect" aria-label="Copy phone number">
+                        <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mb-4 group-hover:bg-orange-400 transition-colors">
+                            <svg class="w-8 h-8 text-orange-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21"/>
+                            </svg>
+                        </div>
+                        <div class="font-semibold">Phone</div>
+                        <div class="text-sm text-gray-500 mt-2">+91 832 988 7691</div>
+                        <div class="text-xs text-gray-400 mt-2">Click to copy</div>
+                    </button>
+
+                    <button id="copy-email" class="tilt-card p-6 rounded-xl glass border border-gray-200 flex flex-col items-center text-center hover:border-[var(--accent)] group transition-all shadow-lg fade-up copy-effect" aria-label="Copy email">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-400 transition-colors">
+                            <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16"/>
+                            </svg>
+                        </div>
+                        <div class="font-semibold">Email</div>
+                        <div class="text-sm text-gray-500 mt-2">hello@sphurit.com</div>
+                        <div class="text-xs text-gray-400 mt-2">Click to copy</div>
+                    </button>
+
+                    <div class="tilt-card p-6 rounded-xl glass border border-gray-200 flex flex-col items-center text-center hover:border-[var(--accent)] group transition-all shadow-lg fade-up">
+                        <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <svg class="w-8 h-8 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7z"/>
+                            </svg>
+                        </div>
+                        <div class="font-semibold">Visit Us</div>
+                        <div class="text-sm text-gray-500 mt-2">Pune, Maharashtra, India</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT FORM + MAP -->
+        <section class="bg-gray-50 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <!-- Form -->
+                <div class="lg:col-span-2 fade-up">
+                    <div id="contact-form" class="glass rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold italic text-black mb-2">
+                            <span class="accent-first-letter">S</span>end us a message
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-6">
+                            Tell us about your project and we'll reach out within one business day.
+                        </p>
+
+                        <form id="lead-form" novalidate class="space-y-6">
+                            <div class="floating-label">
+                                <input id="name" name="name" type="text" placeholder=" " required class="w-full px-4 py-4 rounded-lg glass border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-all" />
+                                <label for="name">Full name *</label>
+                            </div>
+
+                            <div class="floating-label">
+                                <input id="email" name="email" type="email" placeholder=" " required class="w-full px-4 py-4 rounded-lg glass border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-all" />
+                                <label for="email">Email address *</label>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="floating-label">
+                                    <input id="phone" name="phone" type="tel" placeholder=" " required class="w-full px-4 py-4 rounded-lg glass border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-all" />
+                                    <label for="phone">Phone *</label>
+                                </div>
+
+                                <div class="floating-label">
+                                    <input id="company" name="company" type="text" placeholder=" " class="w-full px-4 py-4 rounded-lg glass border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-all" />
+                                    <label for="company">Company</label>
+                                </div>
+                            </div>
+
+                            <div class="floating-label">
+                                <textarea id="message" name="message" rows="5" placeholder=" " required class="w-full px-4 py-4 rounded-lg glass border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-all resize-none"></textarea>
+                                <label for="message">How can we help? *</label>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <button id="submit-btn" type="submit" class="tilt-card px-8 py-4 rounded-lg bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">
+                                    Submit Message
+                                </button>
+                                <div id="form-status" class="text-sm text-gray-600" aria-live="polite"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Info + Map -->
+                <aside class="space-y-6 fade-up">
+                    <div class="glass rounded-xl p-6 shadow-lg">
+                        <h4 class="font-semibold text-lg mb-4 italic">
+                            <span class="accent-first-letter">C</span>ontact Info
+                        </h4>
+                        <p class="text-sm text-gray-600 mb-6">
+                            We're available Mon-Fri, 9am to 6pm IST.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors">
+                                <svg class="w-5 h-5 text-[var(--accent)]" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2"/>
+                                </svg>
+                                <div>
+                                    <div class="text-sm font-medium">Phone</div>
+                                    <div class="text-xs text-gray-600">+91 832 988 7691</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors">
+                                <svg class="w-5 h-5 text-[var(--accent)]" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 4H4a2 2 0 00-2 2v12"/>
+                                </svg>
+                                <div>
+                                    <div class="text-sm font-medium">Email</div>
+                                    <div class="text-xs text-gray-600">hello@sphurit.com</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors">
+                                <svg class="w-5 h-5 text-[var(--accent)]" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7z"/>
+                                </svg>
+                                <div>
+                                    <div class="text-sm font-medium">Address</div>
+                                    <div class="text-xs text-gray-600">Patel Complex, Paud Road, Bhusari Colony, Kothrud, Pune</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div class="overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
+                        <iframe class="w-full h-64" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            src="https://maps.google.com/maps?q=Pune%2C%20India&z=13&output=embed" 
+                            title="Sphurit location - Pune">
+                        </iframe>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section class="py-12 bg-gradient-to-r from-[#ffe6dc] to-[#fff3ec]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 fade-up">
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold italic text-black">
+                        Ready to Take Your Business to the <span class="accent-first-letter">N</span>ext Level?
+                    </h3>
+                    <p class="text-sm text-gray-700 mt-1">
+                        Schedule a free consultation and let's plan your growth roadmap.
+                    </p>
+                </div>
+                <a href="#contact-form" class="tilt-card inline-block px-8 py-4 rounded-lg bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all focus:ring-2 focus:ring-[var(--accent)]">
+                    Schedule Free Consultation
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Success Popup -->
+    <div id="success-popup" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50">
+        <div class="glass rounded-xl p-8 w-full max-w-md text-center pop-in shadow-2xl">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">✓</div>
+            <div class="text-2xl font-bold text-[var(--accent)] mb-2">Thank you!</div>
+            <p class="text-gray-700 mb-6">We received your message and will be in touch shortly.</p>
+            <button id="close-success" class="px-6 py-3 rounded-lg bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-semibold">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Include HTML function
+        function includeHTML(selector, url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector(selector).innerHTML = data;
+                    // Set active nav link
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('data-page') === 'contact') {
+                            link.classList.add('active');
+                        }
+                    });
+                    // Initialize mobile menu
+                    initMobileMenu();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Initialize mobile menu
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', !isHidden);
+                });
+            }
+        }
+
+        // Click-to-copy functionality
+        function initClickToCopy() {
+            document.getElementById('copy-phone')?.addEventListener('click', async () => {
+                const phone = '+91 832 988 7691';
+                try {
+                    await navigator.clipboard.writeText(phone);
+                    showCopyEffect('copy-phone');
+                } catch {
+                    console.log('Copy failed');
+                }
+            });
+
+            document.getElementById('copy-email')?.addEventListener('click', async () => {
+                const email = 'hello@sphurit.com';
+                try {
+                    await navigator.clipboard.writeText(email);
+                    showCopyEffect('copy-email');
+                } catch {
+                    console.log('Copy failed');
+                }
+            });
+        }
+
+        function showCopyEffect(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.add('copied');
+            setTimeout(() => {
+                element.classList.remove('copied');
+            }, 1000);
+        }
+
+        // Form validation and submission
+        function initContactForm() {
+            const form = document.getElementById('lead-form');
+            const status = document.getElementById('form-status');
+            const popup = document.getElementById('success-popup');
+            const closeSuccess = document.getElementById('close-success');
+
+            function markInvalid(el) {
+                el.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+                el.classList.remove('border-gray-200');
+            }
+
+            function clearInvalid(el) {
+                el.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+                el.classList.add('border-gray-200');
+            }
+
+            form?.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const data = new FormData(form);
+                const required = ['name', 'email', 'phone', 'message'];
+                let firstInvalid = null;
+
+                // Clear previous errors
+                form.querySelectorAll('input, textarea').forEach(clearInvalid);
+
+                // Validate required fields
+                required.forEach(fieldName => {
+                    const el = form.querySelector(`[name="${fieldName}"]`);
+                    const val = (data.get(fieldName) || '').toString().trim();
+                    if (!val) {
+                        markInvalid(el);
+                        if (!firstInvalid) firstInvalid = el;
+                    }
+                });
+
+                // Email validation
+                const emailEl = form.querySelector('[name="email"]');
+                if (emailEl && emailEl.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailEl.value)) {
+                        markInvalid(emailEl);
+                        if (!firstInvalid) firstInvalid = emailEl;
+                    }
+                }
+
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                    status.textContent = 'Please complete required fields.';
+                    status.classList.add('text-red-600');
+                    setTimeout(() => {
+                        status.textContent = '';
+                        status.classList.remove('text-red-600');
+                    }, 3000);
+                    return;
+                }
+
+                // Simulate form submission
+                status.textContent = 'Sending...';
+                status.classList.add('text-blue-600');
+
+                setTimeout(() => {
+                    status.textContent = '';
+                    status.classList.remove('text-blue-600');
+                    popup?.classList.remove('hidden');
+                    popup?.classList.add('flex');
+                    form.reset();
+                    // Blur all inputs to reset floating labels
+                    form.querySelectorAll('input, textarea').forEach(input => input.blur());
+                }, 1000);
+            });
+
+            closeSuccess?.addEventListener('click', () => {
+                popup?.classList.add('hidden');
+                popup?.classList.remove('flex');
+            });
+        }
+
+        // Initialize tilt effect
+        function initTilt() {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+        }
+
+        // Fade up animation observer
+        function setupFadeUpObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            includeHTML('#navbar-placeholder', 'navbar.html');
+            includeHTML('#footer-placeholder', 'footer.html');
+            initClickToCopy();
+            initContactForm();
+            initTilt();
+            setupFadeUpObserver();
+        });
+
+        // Reduced motion support
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>

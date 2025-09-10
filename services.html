@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Strategy-First Digital Solutions | Sphurit Technologies</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #e25101;
+            --accent-2: #ff7a1a;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Flip Cards */
+        .flip-card {
+            perspective: 1200px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+        
+        .fade-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accent Text Styling */
+        .accent-first-letter {
+            font-size: 1.2em;
+            color: var(--accent);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* Hero Typography */
+        .hero-heading {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+        }
+
+        /* Hover Glow Effect */
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(226, 81, 1, 0.3);
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .tilt-card {
+                transition: none;
+            }
+            .flip-card-inner {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="bg-gradient-to-br from-gray-50 to-white py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="hero-heading font-bold italic text-black mb-6 fade-up">
+                    Our <span class="accent-first-letter">S</span>ervices
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-up">
+                    Strategy-first solutions that fix the foundation before scaling the house. No tactics without strategy.
+                </p>
+            </div>
+        </section>
+
+        <!-- MAIN SERVICES -->
+        <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-up">
+                    <h2 class="text-3xl sm:text-4xl font-bold italic text-black mb-4">
+                        Our <span class="accent-first-letter">S</span>ervices — Everything Your Brand Needs Under One Roof
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        From websites to branding to growth campaigns, we do it all.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Performance Marketing - Highlighted -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border-4 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl mb-4">📈</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">P</span>erformance Marketing
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">ROI-first campaigns that scale high-performing creatives</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Performance Marketing</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Paid media strategy & execution</div>
+                                        <div>• A/B testing & optimization</div>
+                                        <div>• Creative performance analysis</div>
+                                        <div>• ROI tracking & reporting</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-[var(--accent)] rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development - Highlighted -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border-4 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl mb-4">💻</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">W</span>eb Development
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Fast, SEO-ready sites with conversion-focused UX</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Web Development</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Headless & PWA development</div>
+                                        <div>• SEO optimization built-in</div>
+                                        <div>• Performance & speed focus</div>
+                                        <div>• Conversion rate optimization</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-[var(--accent)] rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital Marketing -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">📊</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">D</span>igital Marketing
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Integrated campaigns across all digital channels</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Digital Marketing</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Multi-channel strategy</div>
+                                        <div>• Social media management</div>
+                                        <div>• Email marketing automation</div>
+                                        <div>• Analytics & reporting</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Branding & Design -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🎨</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">B</span>randing & Design
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Identity systems, visual guidelines and collaterals</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Branding & Design</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Logo & identity systems</div>
+                                        <div>• Brand guidelines</div>
+                                        <div>• Marketing collaterals</div>
+                                        <div>• UI/UX design</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content & Copywriting -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">✍️</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">C</span>ontent & Copywriting
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Stories that sell with content engines at scale</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Content & Copywriting</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Long-form content strategy</div>
+                                        <div>• Short-form social content</div>
+                                        <div>• Ad scripts & copy</div>
+                                        <div>• Content automation</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Production -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🎥</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">V</span>ideo Production
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Narrative-first films and social video content</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Video Production</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Creative direction & shoots</div>
+                                        <div>• Professional editing</div>
+                                        <div>• Short-form social videos</div>
+                                        <div>• Motion graphics</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Photography -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">📸</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">P</span>roduct Photography
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">E-commerce ready shoots and lifestyle imagery</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Product Photography</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Product shoots</div>
+                                        <div>• Lifestyle imagery</div>
+                                        <div>• Professional retouching</div>
+                                        <div>• E-commerce optimization</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI-Powered SEO -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🤖</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">A</span>I-Powered SEO
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Data + automation for scalable SEO results</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">AI-Powered SEO</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• AI-assisted content workflows</div>
+                                        <div>• On-page optimization</div>
+                                        <div>• Technical SEO audits</div>
+                                        <div>• Scalable content production</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animation & Storytelling -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🌀</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">A</span>nimation & Storytelling
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Motion narratives and social motion assets</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Animation & Storytelling</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• 2D/3D motion graphics</div>
+                                        <div>• Explainer videos</div>
+                                        <div>• Social motion assets</div>
+                                        <div>• Interactive animations</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lead Generation -->
+                    <div class="flip-card h-96 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200 hover-glow">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🧲</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">L</span>ead Generation
+                                    </h3>
+                                    <p class="text-gray-600 text-sm">Funnels that convert with nurture flows</p>
+                                </div>
+                                <div class="text-xs text-gray-500">Hover to see metrics</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Lead Generation</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• Full-funnel lead systems</div>
+                                        <div>• Nurture flow automation</div>
+                                        <div>• Conversion optimization</div>
+                                        <div>• Lead scoring & qualification</div>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold text-sm">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="bg-gray-50 py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-up">
+                    <h2 class="text-3xl sm:text-4xl font-bold italic text-black mb-6">
+                        Our <span class="accent-first-letter">P</span>rocess
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        A proven 4-step methodology that ensures we solve the right problem before scaling solutions.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="tilt-card p-6 rounded-2xl glass shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white shadow-xl grid place-items-center text-3xl transform perspective-1000 rotate-x-10 rotate-y--10">🧭</div>
+                        <span class="font-semibold text-[var(--accent)]">Step 1</span>
+                        <h3 class="font-bold text-lg mt-1 mb-3 italic">
+                            <span class="accent-first-letter">D</span>iagnosis before prescription
+                        </h3>
+                        <p class="text-sm text-gray-600">Audit the offer, funnel, numbers. Agree on the real problem.</p>
+                    </div>
+                    
+                    <div class="tilt-card p-6 rounded-2xl glass shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white shadow-xl grid place-items-center text-3xl transform perspective-1000 rotate-x-10 rotate-y--10">✍️</div>
+                        <span class="font-semibold text-[var(--accent)]">Step 2</span>
+                        <h3 class="font-bold text-lg mt-1 mb-3 italic">
+                            <span class="accent-first-letter">D</span>esign the smallest winning test
+                        </h3>
+                        <p class="text-sm text-gray-600">One tight hypothesis. Timeline. Owners. Success metric.</p>
+                    </div>
+                    
+                    <div class="tilt-card p-6 rounded-2xl glass shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white shadow-xl grid place-items-center text-3xl transform perspective-1000 rotate-x-10 rotate-y--10">🚀</div>
+                        <span class="font-semibold text-[var(--accent)]">Step 3</span>
+                        <h3 class="font-bold text-lg mt-1 mb-3 italic">
+                            <span class="accent-first-letter">B</span>uild, launch, measure
+                        </h3>
+                        <p class="text-sm text-gray-600">Pages, ads, content, tracking. No fluff.</p>
+                    </div>
+                    
+                    <div class="tilt-card p-6 rounded-2xl glass shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white shadow-xl grid place-items-center text-3xl transform perspective-1000 rotate-x-10 rotate-y--10">⚖️</div>
+                        <span class="font-semibold text-[var(--accent)]">Step 4</span>
+                        <h3 class="font-bold text-lg mt-1 mb-3 italic">
+                            <span class="accent-first-letter">K</span>eep what works, kill the rest
+                        </h3>
+                        <p class="text-sm text-gray-600">Scale winners. Park the noise. Next bottleneck.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDUSTRIES -->
+        <section class="bg-white py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-up">
+                    <h2 class="text-3xl sm:text-4xl font-bold italic text-black mb-6">
+                        <span class="accent-first-letter">I</span>ndustries We Serve
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Specialized expertise in three key sectors where we've delivered proven results.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="tilt-card p-8 rounded-2xl glass border border-gray-200 shadow-lg fade-up">
+                        <div class="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] bg-opacity-10 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 italic">
+                            <span class="accent-first-letter">M</span>anufacturing
+                        </h3>
+                        <p class="text-gray-600 mb-4">B2B lead generation beyond trade fairs. Digital systems that deliver steady enquiry flow with proper lead scoring and nurturing.</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Industrial equipment</li>
+                            <li>• Steel & metals</li>
+                            <li>• Automotive components</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tilt-card p-8 rounded-2xl glass border border-gray-200 shadow-lg fade-up">
+                        <div class="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] bg-opacity-10 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 italic">
+                            <span class="accent-first-letter">R</span>eal Estate
+                        </h3>
+                        <p class="text-gray-600 mb-4">Pre-launch funnels and site visit optimization. Quality over volume approach with proper lead scoring for higher conversion rates.</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Residential projects</li>
+                            <li>• Commercial developments</li>
+                            <li>• Luxury properties</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tilt-card p-8 rounded-2xl glass border border-gray-200 shadow-lg fade-up">
+                        <div class="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] bg-opacity-10 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 italic">
+                            <span class="accent-first-letter">E</span>arly-Stage Startups
+                        </h3>
+                        <p class="text-gray-600 mb-4">Zero-to-digital systems for founders. Pre-launch momentum building, founder-led content, and scalable growth foundations.</p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• SaaS platforms</li>
+                            <li>• D2C brands</li>
+                            <li>• Service businesses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold italic text-white mb-6 fade-up">
+                    Ready to <span style="font-size: 1.2em;">F</span>ix Your Growth System?
+                </h2>
+                <p class="text-xl text-white/90 mb-8 fade-up">
+                    Let's start with a strategy call to diagnose your real growth bottlenecks.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 fade-up">
+                    <a href="contact.html" class="tilt-card px-8 py-4 rounded-xl bg-white text-[var(--accent)] font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
+                        Book Strategy Call
+                    </a>
+                    <a href="portfolio.html" class="tilt-card px-8 py-4 rounded-xl border-2 border-white text-white font-semibold hover:bg-white hover:text-[var(--accent)] transform hover:scale-105 transition-all">
+                        See Case Studies
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Include HTML function
+        function includeHTML(selector, url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector(selector).innerHTML = data;
+                    // Set active nav link
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('data-page') === 'services') {
+                            link.classList.add('active');
+                        }
+                    });
+                    // Initialize mobile menu
+                    initMobileMenu();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Initialize mobile menu
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', !isHidden);
+                });
+            }
+        }
+
+        // Initialize tilt effect
+        function initTilt() {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+        }
+
+        // Fade up animation observer
+        function setupFadeUpObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            includeHTML('#navbar-placeholder', 'navbar.html');
+            includeHTML('#footer-placeholder', 'footer.html');
+            initTilt();
+            setupFadeUpObserver();
+        });
+
+        // Reduced motion support
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>

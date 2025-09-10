@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Sphurit Technologies — Our Story & Values</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Merriweather:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #e25101;
+            --accent-2: #ff7a1a;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 3D Effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateY(-10px);
+        }
+
+        /* Flip Cards */
+        .flip-card {
+            perspective: 1200px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.65s cubic-bezier(0.2, 0.9, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+        
+        .fade-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accent Text Styling */
+        .accent-first-letter {
+            font-size: 1.3em;
+            color: var(--accent);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* Hero Typography */
+        .hero-heading {
+            font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+            line-height: 1.02;
+        }
+
+        /* Story text styling */
+        .story-text {
+            font-family: 'Merriweather', Georgia, serif;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* 3D Number Effects */
+        .number-3d {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(226, 81, 1, 0.3);
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .card-3d {
+                transition: none;
+            }
+            .flip-card-inner {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative overflow-hidden py-20 lg:py-28">
+            <div class="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-white -z-10"></div>
+            
+            <!-- Abstract background -->
+            <div class="absolute inset-0 pointer-events-none opacity-30">
+                <svg class="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1">
+                            <stop offset="0" stop-color="#fff7f0"/>
+                            <stop offset="1" stop-color="#fff"/>
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#g1)" d="M0,96L48,106.7C96,117,192,139,288,160C384,181,480,203,576,218.7C672,235,768,245,864,229.3C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <p class="text-sm font-medium text-gray-500 uppercase fade-up">About</p>
+                        <h1 class="mt-3 hero-heading font-extrabold italic text-black leading-tight fade-up">
+                            About <span class="accent-first-letter">S</span>phurit <span class="accent-first-letter">T</span>echnologies
+                        </h1>
+                        <p class="mt-4 text-lg text-gray-600 max-w-2xl fade-up">
+                            Rooted in Pune, empowering brands with digital innovation and creativity. We turn ideas into measurable growth — brand-first, performance-driven.
+                        </p>
+
+                        <div class="mt-8 flex gap-3 fade-up">
+                            <a href="contact.html" class="card-3d inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-semibold shadow-lg hover:shadow-xl">
+                                Start a Conversation
+                            </a>
+                            <a href="portfolio.html" class="card-3d inline-flex items-center px-6 py-3 rounded-xl glass border border-gray-200 text-gray-700 hover:shadow-lg">
+                                See Our Work
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" 
+                             alt="Team collaboration" 
+                             class="w-full max-w-md rounded-2xl shadow-2xl ring-1 ring-gray-100 card-3d fade-up" 
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT STORY -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 fade-up">
+                        <h2 class="text-3xl font-bold italic text-black mb-6">
+                            Our <span class="accent-first-letter">S</span>tory
+                        </h2>
+                        <div class="story-text text-lg text-gray-700 mb-6">
+                            "Our story is simple: when you grow, we grow. Born in Pune, we blend local roots with global thinking. Every campaign is personal — when you succeed, we celebrate the win together. Let's build something that matters."
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Over the years, our <span class="text-[var(--accent)] font-semibold">empathy</span>, 
+                            <span class="text-[var(--accent)] font-semibold">creativity</span> and 
+                            <span class="text-[var(--accent)] font-semibold">discipline</span> have helped brands across industries grow sustainably.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 fade-up">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg card-3d">
+                            <iframe class="w-full h-64 md:h-80" 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="Sphurit Introduction Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        Our <span class="accent-first-letter">J</span>ourney
+                    </h2>
+                    <p class="text-lg text-gray-600">Key milestones in our growth story</p>
+                </div>
+
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[var(--accent)] to-[var(--accent-2)]"></div>
+                    
+                    <div class="space-y-8">
+                        <div class="timeline-item pl-12 fade-up">
+                            <div class="glass rounded-xl p-6 shadow-lg">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">🚀</span>
+                                    <h3 class="text-xl font-bold">2020 - Founded</h3>
+                                </div>
+                                <p class="text-gray-600">Started as a small studio in Pune with a vision to bridge the gap between creativity and performance.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pl-12 fade-up">
+                            <div class="glass rounded-xl p-6 shadow-lg">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">📈</span>
+                                    <h3 class="text-xl font-bold">2021 - First Major Wins</h3>
+                                </div>
+                                <p class="text-gray-600">Delivered 300% ROI for our first manufacturing client, establishing our performance marketing expertise.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pl-12 fade-up">
+                            <div class="glass rounded-xl p-6 shadow-lg">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">🎯</span>
+                                    <h3 class="text-xl font-bold">2022 - Specialized Focus</h3>
+                                </div>
+                                <p class="text-gray-600">Focused on three key industries: Manufacturing, Real Estate, and Early-stage Startups.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pl-12 fade-up">
+                            <div class="glass rounded-xl p-6 shadow-lg">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">🏆</span>
+                                    <h3 class="text-xl font-bold">2023 - Team Expansion</h3>
+                                </div>
+                                <p class="text-gray-600">Grew to a multidisciplinary team of 15+ specialists across marketing, design, and development.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pl-12 fade-up">
+                            <div class="glass rounded-xl p-6 shadow-lg">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">🌟</span>
+                                    <h3 class="text-xl font-bold">2024 - AI Integration</h3>
+                                </div>
+                                <p class="text-gray-600">Integrated AI-powered tools for content creation, SEO optimization, and performance analysis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALUES -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        Our <span class="accent-first-letter">V</span>alues
+                    </h2>
+                    <p class="text-lg text-gray-600">Principles that guide everything we build</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div class="card-3d p-6 glass rounded-2xl shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">💡</div>
+                        <h4 class="font-bold text-lg mb-2">
+                            <span class="accent-first-letter">I</span>nnovation
+                        </h4>
+                        <p class="text-sm text-gray-600">We explore and build new possibilities with cutting-edge technology.</p>
+                    </div>
+
+                    <div class="card-3d p-6 glass rounded-2xl shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">🔍</div>
+                        <h4 class="font-bold text-lg mb-2">
+                            <span class="accent-first-letter">T</span>ransparency
+                        </h4>
+                        <p class="text-sm text-gray-600">Clear reporting, honest partnership, and open communication always.</p>
+                    </div>
+
+                    <div class="card-3d p-6 glass rounded-2xl shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">🎨</div>
+                        <h4 class="font-bold text-lg mb-2">
+                            <span class="accent-first-letter">C</span>reativity
+                        </h4>
+                        <p class="text-sm text-gray-600">Design-led storytelling that converts visitors into customers.</p>
+                    </div>
+
+                    <div class="card-3d p-6 glass rounded-2xl shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">🌍</div>
+                        <h4 class="font-bold text-lg mb-2">
+                            <span class="accent-first-letter">L</span>ocal <span class="accent-first-letter">R</span>oots
+                        </h4>
+                        <p class="text-sm text-gray-600">Pune-based team with global expertise and local understanding.</p>
+                    </div>
+
+                    <div class="card-3d p-6 glass rounded-2xl shadow-lg text-center fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">📈</div>
+                        <h4 class="font-bold text-lg mb-2">
+                            <span class="accent-first-letter">G</span>rowth-<span class="accent-first-letter">F</span>irst
+                        </h4>
+                        <p class="text-sm text-gray-600">We prioritize measurable outcomes and sustainable growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPROACH -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        Our <span class="accent-first-letter">A</span>pproach
+                    </h2>
+                    <p class="text-lg text-gray-600">We blend creativity and data to build meaningful growth</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Performance Marketing - Highlighted -->
+                    <div class="flip-card h-80 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border-4 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl mb-4">📈</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">P</span>erformance Marketing
+                                    </h3>
+                                    <p class="text-gray-600">Data-driven campaigns that deliver measurable ROI</p>
+                                </div>
+                                <div class="text-sm text-gray-500">Hover to see approach</div>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Our Process</h3>
+                                    <div class="space-y-3 text-sm text-left">
+                                        <div>• Audit existing funnels & metrics</div>
+                                        <div>• Identify growth bottlenecks</div>
+                                        <div>• Design targeted experiments</div>
+                                        <div>• Scale winning campaigns</div>
+                                        <div>• Continuous optimization</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold number-3d">4.2x</div>
+                                    <div class="text-sm">Average ROAS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development - Highlighted -->
+                    <div class="flip-card h-80 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border-4 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl mb-4">💻</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">W</span>eb Development
+                                    </h3>
+                                    <p class="text-gray-600">Fast, SEO-ready, conversion-focused websites</p>
+                                </div>
+                                <div class="text-sm text-gray-500">Hover to see approach</div>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Our Process</h3>
+                                    <div class="space-y-3 text-sm text-left">
+                                        <div>• UX research & wireframing</div>
+                                        <div>• Performance-first development</div>
+                                        <div>• SEO optimization built-in</div>
+                                        <div>• Conversion rate optimization</div>
+                                        <div>• Ongoing maintenance & updates</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold number-3d">95+</div>
+                                    <div class="text-sm">PageSpeed Score</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integrated Approach -->
+                    <div class="flip-card h-80 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🔗</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">I</span>ntegrated Approach
+                                    </h3>
+                                    <p class="text-gray-600">Content, technology, and marketing seamlessly connect</p>
+                                </div>
+                                <div class="text-sm text-gray-500">Hover to see approach</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Our Process</h3>
+                                    <div class="space-y-3 text-sm text-left">
+                                        <div>• Cross-functional team collaboration</div>
+                                        <div>• Unified brand messaging</div>
+                                        <div>• Consistent user experience</div>
+                                        <div>• Data sharing across channels</div>
+                                        <div>• Holistic performance tracking</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[var(--accent)]">360°</div>
+                                    <div class="text-sm">Coverage</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full-Stack Capabilities -->
+                    <div class="flip-card h-80 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">⚡</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">F</span>ull-Stack Capabilities
+                                    </h3>
+                                    <p class="text-gray-600">Everything under one roof for seamless execution</p>
+                                </div>
+                                <div class="text-sm text-gray-500">Hover to see approach</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Our Services</h3>
+                                    <div class="space-y-3 text-sm text-left">
+                                        <div>• Strategy & consulting</div>
+                                        <div>• Design & branding</div>
+                                        <div>• Development & automation</div>
+                                        <div>• Marketing & advertising</div>
+                                        <div>• Analytics & optimization</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[var(--accent)]">15+</div>
+                                    <div class="text-sm">Specialists</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transparent Partnership -->
+                    <div class="flip-card h-80 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🤝</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">T</span>ransparent Partnership
+                                    </h3>
+                                    <p class="text-gray-600">Clear reporting, no surprises, open communication</p>
+                                </div>
+                                <div class="text-sm text-gray-500">Hover to see approach</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Our Promise</h3>
+                                    <div class="space-y-3 text-sm text-left">
+                                        <div>• Weekly progress reports</div>
+                                        <div>• Real-time dashboard access</div>
+                                        <div>• Regular strategy calls</div>
+                                        <div>• Honest feedback & recommendations</div>
+                                        <div>• No long-term contracts</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[var(--accent)]">100%</div>
+                                    <div class="text-sm">Transparency</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sustainable Growth -->
+                    <div class="flip-card h-80 fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front glass border border-gray-200">
+                                <div>
+                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🌱</div>
+                                    <h3 class="text-xl font-bold text-black mb-2">
+                                        <span class="accent-first-letter">S</span>ustainable Growth
+                                    </h3>
+                                    <p class="text-gray-600">Focused on long-term results, not just quick wins</p>
+                                </div>
+                                <div class="text-sm text-gray-500">Hover to see approach</div>
+                            </div>
+                            <div class="flip-card-back bg-gray-900 text-white">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4">Our Focus</h3>
+                                    <div class="space-y-3 text-sm text-left">
+                                        <div>• Building strong foundations</div>
+                                        <div>• Scalable systems & processes</div>
+                                        <div>• Brand equity development</div>
+                                        <div>• Customer lifetime value</div>
+                                        <div>• Continuous improvement</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[var(--accent)]">3x</div>
+                                    <div class="text-sm">Client Retention</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Include HTML function
+        function includeHTML(selector, url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector(selector).innerHTML = data;
+                    // Set active nav link
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('data-page') === 'about') {
+                            link.classList.add('active');
+                        }
+                    });
+                    // Initialize mobile menu
+                    initMobileMenu();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Initialize mobile menu
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', !isHidden);
+                });
+            }
+        }
+
+        // Initialize 3D card effects
+        function init3DCards() {
+            document.querySelectorAll('.card-3d').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+        }
+
+        // Fade up animation observer
+        function setupFadeUpObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            includeHTML('#navbar-placeholder', 'navbar.html');
+            includeHTML('#footer-placeholder', 'footer.html');
+            init3DCards();
+            setupFadeUpObserver();
+        });
+
+        // Reduced motion support
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>
