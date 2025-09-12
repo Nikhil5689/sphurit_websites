@@ -3,632 +3,688 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio of Work — Crafted for Growth | Sphurit Technologies</title>
+    <title>Sphurit — Strategy First. Results Next.</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --accent: #e25101;
-            --accent-2: #ff7a1a;
-        }
-        
+        /* Custom styles for animations and typography */
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
-        /* Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes textReveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-marquee {
+            animation: marquee 36s linear infinite;
+        }
+        
+        .animate-marquee-slow {
+             animation: marquee 40s linear infinite;
         }
 
-        /* 3D Tilt Effect */
-        .tilt-card {
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-text-reveal {
+            animation: textReveal 1s ease-out forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-marquee, .animate-marquee-slow, .animate-fade-in-up, .animate-text-reveal {
+                animation: none !important;
+            }
+        }
+        
+        /* Custom scrollbar for horizontal sections */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Hero gradient background with 3D marketing theme
+           Changed to #00598d themed gradient as requested */
+        .hero-gradient {
+            background: linear-gradient(120deg, rgba(0,89,141,0.12), rgba(0,89,141,0.06));
+            position: relative;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0,89,141,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Dotted background */
+        .dotted-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,.08) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* 3D hover effects */
+        .card-3d {
             transform-style: preserve-3d;
             transition: transform 0.3s ease;
         }
 
-        /* Flip Cards */
-        .flip-card {
-            perspective: 1000px;
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
         }
-        
-        .flip-card-inner {
+
+        /* Glow effects */
+        .glow-border {
             position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
+            overflow: hidden;
         }
-        
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .flip-card-front, .flip-card-back {
+
+        .glow-border::before {
+            content: '';
             position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .flip-card-back {
-            transform: rotateY(180deg);
+            background: linear-gradient(90deg, transparent, rgba(226, 81, 1, 0.4), transparent);
+            transition: left 0.5s;
         }
 
-        /* Marquee Animation */
-        .marquee {
-            display: flex;
-            animation: marquee 30s linear infinite;
-        }
-        
-        .marquee:hover {
-            animation-play-state: paused;
-        }
-        
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .glow-border:hover::before {
+            left: 100%;
         }
 
-        /* Fade Up Animation */
-        .fade-up {
+        /* Navbar underline animation */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e25101;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+            transition: all 0.8s ease;
         }
-        
-        .fade-up.in-view {
+
+        .scroll-animate.animate {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Accent Text Styling */
-        .accent-first-letter {
-            font-size: 1.2em;
-            color: var(--accent);
+        /* Chips / scrolling bar tweaks: increased height and hover border highlight */
+        #chips-container { height: 68px; align-items:center; }
+        #chips-container span { transition: box-shadow 200ms, border-color 200ms, transform 200ms; }
+        #chips-container span:hover { border-color: #00598d; box-shadow: 0 6px 20px rgba(0,89,141,0.12); transform: translateY(-2px); }
+
+        /* Flip card for 'What's Blocking Your Growth?' */
+        .flip-card { perspective: 1000px; }
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+        }
+        .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+        .flip-front, .flip-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            inset: 0;
+            padding: 2rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flip-front { background: linear-gradient(180deg,#ffffff,#fbfbfb); border:1px solid #e6e6e6; }
+        .flip-back { background: linear-gradient(180deg,#f8fafc,#eef2ff); border:1px solid rgba(0,89,141,0.12); transform: rotateY(180deg); color:#0b2b3a; }
+
+        /* Thick gradient border for 'What We Deliver' cards */
+        .gradient-border {
+            padding: 1px;
+            border-radius: 1rem;
+            background: linear-gradient(90deg,#e25101 0%, #00598d 60%);
+        }
+        .gradient-border > .inner {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            height: 100%;
+        }
+        .deliver-btn {
+            background: linear-gradient(90deg, #00598d, #0077b3);
+            color: white;
+            padding: 0.65rem 1rem;
+            border-radius: 0.6rem;
             font-weight: 700;
         }
 
-        /* Hero Typography */
-        .hero-heading {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.1;
+        /* Flow arrow between solution cards (visible on md+) */
+        .flow-arrow { display:none; }
+        @media (min-width: 768px) {
+            .flow-arrow { display:flex; align-items:center; justify-content:center; }
         }
 
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            .marquee {
-                animation: none;
-            }
-            .tilt-card {
-                transition: none;
-            }
-            .flip-card-inner {
-                transition: none;
-            }
-        }
+        /* Brands marquee tweaks: force single-line horizontal scroll */
+        .brands-marquee { overflow: hidden; white-space: nowrap; }
+        .brands-track { display: inline-flex; gap: 2rem; align-items:center; padding: 1rem 0; }
+        .brand-item { display:inline-flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.5rem 1rem; background: #fff; border-radius: 0.75rem; border: 1px solid #eee; }
+
+        /* Facing Issues package card */
+        .package-card { border: 2px solid #e6eef5; background: linear-gradient(180deg,#fff,#f7fbff); padding:2rem; border-radius:1rem; max-width:900px; margin:0 auto; text-align:center; }
+
+        /* Thinking Tank cards: equal heights */
+        .blog-equal { height:100%; display:flex; flex-direction:column; justify-content:space-between; border:1px solid #e6e6e6; box-shadow:0 8px 20px rgba(15,23,42,0.04); padding:1.5rem; border-radius:0.75rem; }
     </style>
 </head>
-<body class="bg-white text-gray-900">
-    <!-- Navigation -->
-    <div id="navbar-placeholder"></div>
+<body class="bg-white text-gray-800">
 
-    <main>
-        <!-- HERO -->
-        <section class="relative overflow-hidden min-h-screen flex items-center">
-            <!-- Background Video -->
-            <video class="absolute inset-0 w-full h-full object-cover -z-20" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
-                <source src="assets/hero-loop.mp4" type="video/mp4">
-                <source src="https://cdn.pixabay.com/vimeo/294398921/pexels-artem-podrez-5752729-1080p-2-0a04f3b2d0.mp4" type="video/mp4">
-            </video>
-            
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-white/60 backdrop-blur-sm -z-10"></div>
-            
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="text-center max-w-4xl mx-auto">
-                    <h1 class="hero-heading font-bold italic text-black mb-6 fade-up">
-                        Portfolio of Work — Crafted for Growth
-                    </h1>
-                    <p class="text-xl text-gray-700 mb-4 fade-up">Case studies, videos, websites</p>
-                    <p class="text-lg text-gray-600 mb-8 fade-up">Sphurit Growth & Performance</p>
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-gray-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2" aria-label="Sphurit home">
+                <img src="https://img.icons8.com/plasticine/100/s-symbol.png" alt="Sphurit Logo" class="h-10 w-auto">
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600" aria-label="Primary">
+                <a href="index.html" class="nav-link hover:text-[#e25101] transition-colors">Home</a>
+                <a href="about.html" class="nav-link hover:text-[#e25101] transition-colors">About Us</a>
+                <a href="services.html" class="nav-link hover:text-[#e25101] transition-colors">Services</a>
+                <a href="portfolio.html" class="nav-link hover:text-[#e25101] transition-colors">Portfolio</a>
+                <a href="contact.html" class="nav-link hover:text-[#e25101] transition-colors">Contact Us</a>
+            </nav>
+            <div class="hidden md:flex items-center gap-3">
+                <button onclick="openEnquiryModal()" aria-label="Enquire now" class="px-6 py-2.5 rounded-lg bg-[#e25101] text-white font-semibold shadow-lg hover:bg-opacity-90 transform hover:scale-105 transition-all">
+                    Enquire Now
+                </button>
+            </div>
+            <button id="menu-btn" class="md:hidden p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e25101]" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200" role="dialog" aria-label="Mobile navigation">
+            <nav class="px-4 py-3 grid gap-2 text-base font-medium">
+                <a href="index.html" class="block py-2 px-3 rounded-md hover:bg-gray-100">Home</a>
+                <a href="about.html" class="block py-2 px-3 rounded-md hover:bg-gray-100">About Us</a>
+                <a href="services.html" class="block py-2 px-3 rounded-md hover:bg-gray-100">Services</a>
+                <a href="portfolio.html" class="block py-2 px-3 rounded-md hover:bg-gray-100">Portfolio</a>
+                <a href="contact.html" class="block py-2 px-3 rounded-md hover:bg-gray-100">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- Hero Section -->
+        <section class="hero-gradient relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 text-center relative z-10">
+                <p class="text-sm font-semibold tracking-wider text-gray-600 uppercase animate-text-reveal">Strategy first. Results next.</p>
+                <div id="rotating-banner" class="relative h-32 md:h-36 overflow-hidden my-6" aria-live="polite">
+                    <!-- Rotating lines will be injected here by JS -->
+                </div>
+                <p class="mt-6 text-lg text-gray-700 max-w-3xl mx-auto animate-text-reveal" style="animation-delay: 0.3s;">Most teams push ads before fixing the offer, funnel, or measurement. We do the opposite. Solve the right problem, then pour fuel.</p>
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6 text-center max-w-4xl mx-auto">
+                    <div class="p-6 rounded-2xl bg-white/70 backdrop-blur-sm shadow-xl card-3d"><div class="counter text-4xl font-bold text-gray-900" data-to="25000">0</div><div class="text-sm text-gray-500 mt-2">Qualified leads generated</div></div>
+                    <div class="p-6 rounded-2xl bg-white/70 backdrop-blur-sm shadow-xl card-3d"><div class="counter text-4xl font-bold text-gray-900" data-to="42" data-suffix="%">0%</div><div class="text-sm text-gray-500 mt-2">Avg CPL reduction</div></div>
+                    <div class="p-6 rounded-2xl bg-white/70 backdrop-blur-sm shadow-xl card-3d col-span-2 md:col-span-1"><div class="counter text-4xl font-bold text-gray-900" data-to="95" data-suffix="%">0%</div><div class="text-sm text-gray-500 mt-2">Web vitals score</div></div>
+                </div>
+                <div class="mt-12 flex flex-wrap justify-center gap-4">
+                    <a href="contact.html" class="px-8 py-4 rounded-xl bg-[#e25101] text-white font-semibold shadow-lg hover:bg-opacity-90 transform hover:-translate-y-1 transition-all">Book a Strategy Call</a>
+                    <a href="portfolio.html" class="px-8 py-4 rounded-xl border border-gray-300 bg-white font-semibold hover:border-[#e25101] hover:text-[#e25101] transform hover:-translate-y-1 transition-all shadow-md">See Our Work</a>
+                </div>
+            </div>
+            <!-- Enhanced Expertise Chips Marquee -->
+            <div class="relative overflow-hidden border-y border-gray-200 bg-white/60 backdrop-blur py-2" aria-label="Expertise">
+                <div id="chips-container" class="flex w-max py-6 text-sm font-medium text-gray-700 animate-marquee">
+                    <!-- Chip content will be injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Blocking Your Growth Section -->
+        <section id="problems" class="bg-white scroll-animate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">What's Blocking Your Growth?</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Pick your reality. We'll show the first fix, not a laundry list of services.</p>
+                <div id="problems-grid" class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    <!-- Problem cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Sphurit Section -->
+        <section class="bg-gray-50 scroll-animate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">Why Sphurit?</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">We combine marketing expertise, creativity, and data science to deliver measurable growth.</p>
+                <div class="mt-12 grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+                    <!-- Simplified: only headings in bordered boxes with bold typography -->
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200 text-center font-bold text-lg card-3d">Marketing + Creativity + Data</div>
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200 text-center font-bold text-lg card-3d">High-ROI Digital Campaigns</div>
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200 text-center font-bold text-lg card-3d">Creative & Data-Driven Marketing</div>
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200 text-center font-bold text-lg card-3d">Global + Local Reach</div>
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200 text-center font-bold text-lg card-3d">Proven SEO & Growth Hacking</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Deliver Section -->
+        <section id="solutions" class="dotted-bg scroll-animate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">What We Deliver</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Targeted solutions designed for measurable impact and sustainable growth.</p>
+                
+                <!-- Flow arrows between blocks -->
+                <div class="mt-12 relative">
+                    <div id="solutions-grid" class="grid md:grid-cols-3 gap-8 text-left relative items-stretch">
+                        <!-- JS will inject gradient-border cards; arrows will be added between cards for flow -->
+                    </div>
                     
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up">
-                        <a href="portfolio.html" class="tilt-card px-8 py-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
-                            View Our Work
-                        </a>
-                        <a href="contact.html" class="tilt-card px-8 py-4 rounded-xl glass border border-gray-200 text-gray-800 font-semibold hover:shadow-lg transform hover:scale-105 transition-all">
-                            Start a Project
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICE MARQUEE -->
-        <section class="py-8 bg-gray-50 border-y border-gray-200">
-            <div class="overflow-hidden">
-                <div class="marquee whitespace-nowrap">
-                    <div class="inline-flex items-center gap-12 pr-12">
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">🔍</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">S</span>EO</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">📊</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">G</span>oogle Ads</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">✍️</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">C</span>ontent Strategy</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">📈</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">P</span>erformance Marketing</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">💻</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">W</span>eb Development</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">🎥</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">V</span>ideo Editing</span>
-                        </div>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="inline-flex items-center gap-12 pr-12">
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">🔍</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">S</span>EO</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">📊</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">G</span>oogle Ads</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">✍️</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">C</span>ontent Strategy</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">📈</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">P</span>erformance Marketing</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">💻</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">W</span>eb Development</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">🎥</span>
-                            <span class="text-lg font-semibold"><span class="accent-first-letter">V</span>ideo Editing</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURED SERVICES -->
-        <section class="py-20 bg-white">
+                    <!-- Flow arrows -->
+                    <!-- Decorative arrows kept minimal; per-card arrows added via JS for responsive flow -->
+                 </div>
+             </div>
+         </section>
+       <!-- PERFORMANCE MARKETING RESULTS -->    Users\nikhi\Downloads\sphurit-website-redesign\index.html
+    // ...existing code...
+        <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 fade-up">
-                    <h2 class="text-3xl sm:text-4xl font-bold italic text-black mb-4">
-                        Our <span class="accent-first-letter">S</span>ervices
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        <span class="accent-first-letter">P</span>erformance Marketing Results
                     </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Full-stack digital solutions that drive measurable growth
-                    </p>
+                    <p class="text-lg text-gray-600">Real numbers from real campaigns</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Performance Marketing - Highlighted -->
-                    <div class="flip-card h-80 fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front glass border-4 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]">
-                                <div>
-                                    <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl mb-4">📈</div>
-                                    <h3 class="text-xl font-bold text-black mb-2">Performance Marketing</h3>
-                                    <p class="text-gray-600">ROI-focused campaigns that scale</p>
-                                </div>
-                                <div class="text-sm text-gray-500">Hover to see metrics</div>
-                            </div>
-                            <div class="flip-card-back bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-white">
-                                <div>
-                                    <h3 class="text-xl font-bold mb-4">Performance Marketing</h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div class="flex justify-between">
-                                            <span>Avg. ROAS:</span>
-                                            <span class="font-bold">4.2x</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Cost Reduction:</span>
-                                            <span class="font-bold">35%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Lead Quality:</span>
-                                            <span class="font-bold">+60%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="services.html" class="inline-block px-4 py-2 bg-white text-[var(--accent)] rounded-lg font-semibold">Learn More</a>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-3d glass rounded-2xl p-8 text-center shadow-lg fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">📈</div>
+                        <div class="text-3xl font-bold text-[var(--accent)] counter mb-2" data-counter="2500000">0</div>
+                        <div class="text-gray-600 font-semibold">Total Reach</div>
+                        <div class="text-sm text-gray-500 mt-2">Across all campaigns</div>
                     </div>
 
-                    <!-- Web Development - Highlighted -->
-                    <div class="flip-card h-80 fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front glass border-4 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]">
-                                <div>
-                                    <div class="w-16 h-16 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl mb-4">💻</div>
-                                    <h3 class="text-xl font-bold text-black mb-2">Web Development</h3>
-                                    <p class="text-gray-600">Fast, SEO-ready, conversion-focused</p>
-                                </div>
-                                <div class="text-sm text-gray-500">Hover to see metrics</div>
-                            </div>
-                            <div class="flip-card-back bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-white">
-                                <div>
-                                    <h3 class="text-xl font-bold mb-4">Web Development</h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div class="flex justify-between">
-                                            <span>Page Speed:</span>
-                                            <span class="font-bold">95+ Score</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Conversion Rate:</span>
-                                            <span class="font-bold">+45%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Mobile Optimized:</span>
-                                            <span class="font-bold">100%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="services.html" class="inline-block px-4 py-2 bg-white text-[var(--accent)] rounded-lg font-semibold">Learn More</a>
-                            </div>
-                        </div>
+                    <div class="card-3d glass rounded-2xl p-8 text-center shadow-lg fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">🎯</div>
+                        <div class="text-3xl font-bold text-[var(--accent)] counter mb-2" data-counter="15000">0</div>
+                        <div class="text-gray-600 font-semibold">Quality Leads</div>
+                        <div class="text-sm text-gray-500 mt-2">Generated this year</div>
                     </div>
 
-                    <!-- SEO & Content -->
-                    <div class="flip-card h-80 fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front glass border border-gray-200">
-                                <div>
-                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🔍</div>
-                                    <h3 class="text-xl font-bold text-black mb-2">SEO & Content</h3>
-                                    <p class="text-gray-600">AI-powered content that ranks</p>
-                                </div>
-                                <div class="text-sm text-gray-500">Hover to see metrics</div>
-                            </div>
-                            <div class="flip-card-back bg-gray-900 text-white">
-                                <div>
-                                    <h3 class="text-xl font-bold mb-4">SEO & Content</h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div class="flex justify-between">
-                                            <span>Organic Traffic:</span>
-                                            <span class="font-bold">+180%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Keyword Rankings:</span>
-                                            <span class="font-bold">Top 3</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Content Velocity:</span>
-                                            <span class="font-bold">5x Faster</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="services.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video Production -->
-                    <div class="flip-card h-80 fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front glass border border-gray-200">
-                                <div>
-                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🎥</div>
-                                    <h3 class="text-xl font-bold text-black mb-2">Video Production</h3>
-                                    <p class="text-gray-600">Narrative-first storytelling</p>
-                                </div>
-                                <div class="text-sm text-gray-500">Hover to see metrics</div>
-                            </div>
-                            <div class="flip-card-back bg-gray-900 text-white">
-                                <div>
-                                    <h3 class="text-xl font-bold mb-4">Video Production</h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div class="flex justify-between">
-                                            <span>Engagement Rate:</span>
-                                            <span class="font-bold">+250%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Video CTR:</span>
-                                            <span class="font-bold">8.5%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Brand Recall:</span>
-                                            <span class="font-bold">+85%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="services.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Branding -->
-                    <div class="flip-card h-80 fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front glass border border-gray-200">
-                                <div>
-                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🎨</div>
-                                    <h3 class="text-xl font-bold text-black mb-2">Branding & Design</h3>
-                                    <p class="text-gray-600">Identity systems that convert</p>
-                                </div>
-                                <div class="text-sm text-gray-500">Hover to see metrics</div>
-                            </div>
-                            <div class="flip-card-back bg-gray-900 text-white">
-                                <div>
-                                    <h3 class="text-xl font-bold mb-4">Branding & Design</h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div class="flex justify-between">
-                                            <span>Brand Recognition:</span>
-                                            <span class="font-bold">+120%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Design Consistency:</span>
-                                            <span class="font-bold">98%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Customer Trust:</span>
-                                            <span class="font-bold">+75%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="services.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Lead Generation -->
-                    <div class="flip-card h-80 fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front glass border border-gray-200">
-                                <div>
-                                    <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-2xl mb-4">🧲</div>
-                                    <h3 class="text-xl font-bold text-black mb-2">Lead Generation</h3>
-                                    <p class="text-gray-600">Funnels that convert visitors</p>
-                                </div>
-                                <div class="text-sm text-gray-500">Hover to see metrics</div>
-                            </div>
-                            <div class="flip-card-back bg-gray-900 text-white">
-                                <div>
-                                    <h3 class="text-xl font-bold mb-4">Lead Generation</h3>
-                                    <div class="space-y-3 text-sm">
-                                        <div class="flex justify-between">
-                                            <span>Lead Quality:</span>
-                                            <span class="font-bold">+90%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Conversion Rate:</span>
-                                            <span class="font-bold">12.5%</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>Cost per Lead:</span>
-                                            <span class="font-bold">-40%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="services.html" class="inline-block px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold">Learn More</a>
-                            </div>
-                        </div>
+                    <div class="card-3d glass rounded-2xl p-8 text-center shadow-lg fade-up">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-2xl">💰</div>
+                        <div class="text-3xl font-bold text-[var(--accent)] counter mb-2" data-counter="850">0</div>
+                        <div class="text-gray-600 font-semibold">Conversions</div>
+                        <div class="text-sm text-gray-500 mt-2">High-value conversions</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- GROWTH CTA -->
-        <section class="py-16 bg-gradient-to-br from-gray-50 to-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="glass rounded-3xl p-8 md:p-12 text-center border-2 border-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] shadow-2xl fade-up">
-                    <div class="flex items-center justify-center gap-4 mb-6">
-                        <div class="animate-bounce">
-                            <svg class="w-8 h-8 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <h2 class="text-2xl md:text-3xl font-bold italic text-black">
-                            Facing Issues with <span class="accent-first-letter">S</span>EO/<span class="accent-first-letter">G</span>rowth?
-                        </h2>
-                        <div class="animate-bounce">
-                            <svg class="w-8 h-8 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
+        <!-- BRANDS WE HANDLE -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                        <span class="accent-first-letter">B</span>rands We Handle
+                    </h2>
+                    <p class="text-lg text-gray-600">Trusted by industry leaders across sectors</p>
+                </div>
+
+                <!-- Horizontal marquee of brand logos (scroll right → left) -->
+                <div class="brands-marquee">
+                    <div id="brands-track" class="brands-track animate-marquee-slow">
+                        <div class="brand-item"> <span class="text-xl font-bold">M</span><span>MetalCorp</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">R</span><span>Residency</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">S</span><span>StartupFlow</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">T</span><span>TechVision</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">I</span><span>InnovateCorp</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">G</span><span>GrowthLab</span></div>
+                        <!-- repeated set for seamless scroll -->
+                        <div class="brand-item"> <span class="text-xl font-bold">M</span><span>MetalCorp</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">R</span><span>Residency</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">S</span><span>StartupFlow</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">T</span><span>TechVision</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">I</span><span>InnovateCorp</span></div>
+                        <div class="brand-item"> <span class="text-xl font-bold">G</span><span>GrowthLab</span></div>
                     </div>
-                    
-                    <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                        We diagnose the real problem before prescribing solutions. No tactics without strategy.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-bold">✓</div>
-                            <span class="text-gray-700">Free Growth Audit</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-bold">✓</div>
-                            <span class="text-gray-700">Strategy-First Approach</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-bold">✓</div>
-                            <span class="text-gray-700">Measurable Results</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Counters in CTA -->
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-[var(--accent)]" data-counter="2500000">0</div>
-                            <div class="text-sm text-gray-600">Total Reach</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-[var(--accent)]" data-counter="15000">0</div>
-                            <div class="text-sm text-gray-600">Quality Leads</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html" class="tilt-card inline-block px-8 py-4 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
-                        Start a Project
-                    </a>
                 </div>
             </div>
         </section>
+        <!-- Industries We Serve Section -->
+        <section class="bg-white scroll-animate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">Industries We Serve</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Specialized expertise across diverse sectors with proven growth strategies.</p>
+                <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 00-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Manufacturing</h3>
+                        <p class="text-gray-600 mb-4">Industrial equipment, steel, automotive, and heavy machinery companies looking to modernize their marketing approach.</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• B2B lead generation</li>
+                            <li>• Trade show amplification</li>
+                            <li>• Technical content marketing</li>
+                        </ul>
+                    </div>
+                    <div class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Real Estate</h3>
+                        <p class="text-gray-600 mb-4">Residential, commercial, and luxury property developers seeking qualified leads and faster sales cycles.</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Pre-launch campaigns</li>
+                            <li>• Virtual tours & videos</li>
+                            <li>• Lead scoring systems</li>
+                        </ul>
+                    </div>
+                    <div class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-500 to-green-700 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Startups</h3>
+                        <p class="text-gray-600 mb-4">SaaS, D2C, and service-based startups needing rapid growth and market validation strategies.</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Product-market fit validation</li>
+                            <li>• Growth hacking strategies</li>
+                            <li>• Investor-ready metrics</li>
+                        </ul>
+                    </div>
+                    <div class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">D2C Brands</h3>
+                        <p class="text-gray-600 mb-4">Direct-to-consumer brands looking to scale their online presence and customer acquisition.</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• E-commerce optimization</li>
+                            <li>• Social commerce strategies</li>
+                            <li>• Customer retention campaigns</li>
+                        </ul>
+                    </div>
+                    <div class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-red-500 to-red-700 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Education</h3>
+                        <p class="text-gray-600 mb-4">Educational institutions and EdTech companies seeking student acquisition and engagement.</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Student recruitment campaigns</li>
+                            <li>• Course promotion strategies</li>
+                            <li>• Alumni engagement programs</li>
+                        </ul>
+                    </div>
+                    <div class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-teal-500 to-teal-700 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Healthcare</h3>
+                        <p class="text-gray-600 mb-4">Healthcare providers and medical technology companies focused on patient acquisition and trust building.</p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Patient education content</li>
+                            <li>• Compliance-focused campaigns</li>
+                            <li>• Reputation management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thinking Tank Section -->
+        <section id="thinking" class="bg-gray-50 scroll-animate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold">Thinking Tank</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Short reads on what actually moves numbers. No fluff, just actionable insights.</p>
+                <div id="blogs-grid" class="mt-12 grid md:grid-cols-3 gap-8 text-left">
+                   <!-- Blog cards will be injected here by JS -->
+                </div>
+                <div class="mt-12"><a href="#" class="inline-block px-6 py-3 rounded-xl border border-gray-300 font-semibold hover:border-[#e25101] hover:text-[#e25101] transition-all">Explore More Insights</a></div>
+            </div>
+        </section>
+
+        <!-- Facing Issues with SEO/Growth Section -->
+        <section class="bg-[#e25101] text-white scroll-animate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+                <div class="text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">Facing Issues with SEO/Growth?</h2>
+                    <p class="mb-8 text-lg text-orange-100">We packaged a fast-start growth bundle for early traction.</p>
+                    <div class="package-card">
+                        <div class="text-3xl font-extrabold mb-4">₹49,999/-</div>
+                        <div class="font-semibold mb-4">Includes: Website, SEO, Video Animation, Pitch Deck, 1-Month Social Media Strategy</div>
+                        <p class="text-sm text-gray-600 mb-6">One-time package to set up your digital presence and first-month activation playbook. Delivered with strategy and measurable outcomes.</p>
+                        <a href="contact.html" class="inline-block deliver-btn">Start with this Package</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="https://img.icons8.com/plasticine/100/s-symbol.png" alt="Sphurit Logo" class="h-10 w-auto">
+                        <span class="text-2xl font-bold">Sphurit</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">Strategy-first growth partner helping manufacturing, real estate, and startup brands scale with data-driven marketing solutions.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#e25101] flex items-center justify-center hover:bg-opacity-80 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#e25101] flex items-center justify-center hover:bg-opacity-80 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#e25101] flex items-center justify-center hover:bg-opacity-80 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-[#e25101]">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-300 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-[#e25101]">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                            hello@sphurit.com
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                            +91 90000 00000
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            Pune, India
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+                            WhatsApp
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+                <div id="footer-year">© 2024 Sphurit Technologies Pvt Ltd. All rights reserved.</div>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="hover:text-[#e25101] transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-[#e25101] transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Desktop Floating CTA -->
+    <div class="fixed right-6 bottom-6 hidden md:grid gap-4 z-40">
+        <button onclick="openEnquiryModal()" aria-label="Enquire now" class="w-14 h-14 rounded-full grid place-items-center bg-[#e25101] text-white shadow-xl hover:bg-opacity-90 transform hover:scale-110 transition-all">
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+        </button>
+        <a href="https://wa.me/919000000000?text=Hi%20Sphurit%2C%20let%27s%20talk" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-14 h-14 rounded-full grid place-items-center bg-white border shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all">
+             <svg viewBox="0 0 24 24" aria-hidden class="w-7 h-7"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.66 15.06L2 22l5.06-1.34A10 10 0 1 0 12 2z"/><path fill="#fff" d="M17.5 14.5c-.2.56-1.18 1.04-1.7 1.1-.45.06-1.03.09-1.67-.1-.38-.12-.87-.28-1.5-.55-2.65-1.16-4.37-3.88-4.5-4.06-.13-.18-1.08-1.44-1.08-2.74s.68-1.94.92-2.2.53-.32.71-.32.36 0 .52.01c.17.01.39-.07.61.47.22.55.75 1.9.82 2.04.07.14.11.31.02.49-.1.17-.15.28-.3.44-.15.16-.31.36-.44.49-.15.15-.3.31-.13.6.18.3.77 1.28 1.65 2.08 1.13 1.01 2.08 1.33 2.38 1.48.3.15.48.13.66-.08.18-.21.76-.89.96-1.2.2-.31.41-.26.68-.16.27.1 1.7.8 1.99.95.29.14.48.22.55.35.06.13.06.75-.14 1.31z"/></svg>
+        </a>
+    </div>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/90 backdrop-blur border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+            <a href="tel:+919000000000" aria-label="Strategy Call" class="w-12 h-12 rounded-full grid place-items-center bg-[#e25101] text-white shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            </a>
+            <a href="https://wa.me/919000000000?text=Hi%20Sphurit%2C%20let%27s%20talk" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-12 h-12 rounded-full grid place-items-center bg-white border shadow-lg">
+                 <svg viewBox="0 0 24 24" aria-hidden class="w-6 h-6"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.66 15.06L2 22l5.06-1.34A10 10 0 1 0 12 2z"/><path fill="#fff" d="M17.5 14.5c-.2.56-1.18 1.04-1.7 1.1-.45.06-1.03.09-1.67-.1-.38-.12-.87-.28-1.5-.55-2.65-1.16-4.37-3.88-4.5-4.06-.13-.18-1.08-1.44-1.08-2.74s.68-1.94.92-2.2.53-.32.71-.32.36 0 .52.01c.17.01.39-.07.61.47.22.55.75 1.9.82 2.04.07.14.11.31.02.49-.1.17-.15.28-.3.44-.15.16-.31.36-.44.49-.15.15-.3.31-.13.6.18.3.77 1.28 1.65 2.08 1.13 1.01 2.08 1.33 2.38 1.48.3.15.48.13.66-.08.18-.21.76-.89.96-1.2.2-.31.41-.26.68-.16.27.1 1.7.8 1.99.95.29.14.48.22.55.35.06.13.06.75-.14 1.31z"/></svg>
+            </a>
+            <button onclick="openEnquiryModal()" class="flex-1 px-4 py-3.5 rounded-xl border border-gray-400 bg-gray-800 text-white font-semibold">Enquire Now</button>
+        </div>
+    </div>
+    
+    <!-- Enquiry Modal -->
+    <div id="enquiry-modal" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-50 p-4 transition-opacity duration-300 opacity-0" role="dialog" aria-modal="true" aria-label="Quick enquiry">
+        <div id="modal-content" class="bg-white w-full max-w-lg rounded-2xl p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-all duration-300">
+            <button aria-label="Close" onclick="closeEnquiryModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-2xl font-bold">Quick Enquiry</h3>
+            <p class="text-sm text-gray-600 mt-1">Tell us a bit. We reply fast.</p>
+            <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); closeEnquiryModal();">
+                 <div class="grid sm:grid-cols-2 gap-4">
+                    <label class="grid gap-1.5"><span class="text-sm font-medium">Name</span><input required name="name" class="px-3 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#e25101] focus:border-[#e25101] outline-none transition"/></label>
+                    <label class="grid gap-1.5"><span class="text-sm font-medium">Company</span><input name="company" class="px-3 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#e25101] focus:border-[#e25101] outline-none transition"/></label>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <label class="grid gap-1.5"><span class="text-sm font-medium">Email</span><input required type="email" name="email" class="px-3 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#e25101] focus:border-[#e25101] outline-none transition"/></label>
+                    <label class="grid gap-1.5"><span class="text-sm font-medium">Phone</span><input name="phone" class="px-3 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#e25101] focus:border-[#e25101] outline-none transition"/></label>
+                </div>
+                <label class="grid gap-1.5"><span class="text-sm font-medium">What do you need?</span>
+                    <select name="need" class="px-3 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#e25101] focus:border-[#e25101] outline-none transition bg-white"><option>Website</option><option>Corporate Video</option><option>Monthly Retainer</option><option>Growth Consultation</option></select>
+                </label>
+                <label class="grid gap-1.5"><span class="text-sm font-medium">Message</span><textarea rows="4" name="message" class="px-3 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#e25101] focus:border-[#e25101] outline-none transition" placeholder="Brief your goals and timeline"></textarea></label>
+                <button class="w-full px-5 py-3 rounded-xl bg-[#e25101] text-white font-semibold">Send Enquiry</button>
+            </form>
+        </div>
+    </div>
 
     <script>
-        // Include HTML function
-        function includeHTML(selector, url) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector(selector).innerHTML = data;
-                    // Set active nav link
-                    const navLinks = document.querySelectorAll('.nav-link');
-                    navLinks.forEach(link => {
-                        if (link.getAttribute('data-page') === 'home') {
-                            link.classList.add('active');
-                        }
-                    });
-                    // Initialize mobile menu
-                    initMobileMenu();
-                })
-                .catch(error => console.error('Error loading HTML:', error));
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- DATA ---
+        const rotatingLines = [ "Growth chahiye? Pehle problem sahi karo.", "Offer • Funnel • Measurement — pe clarity lao.", "Phir media me fuel daalo. Scale aayega." ];
+        const chips = [ { label: "Google Ads", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>` }, { label: "Meta Ads", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88V14.88H8.08v-2.77h2.36V9.99c0-2.34 1.39-3.66 3.56-3.66 1.03 0 2.08.18 2.08.18v2.36h-1.21c-1.15 0-1.5.69-1.5 1.44v1.75h2.66l-.42 2.77h-2.24V21.88C18.34 21.13 22 16.99 22 12c0-5.52-4.48-10-10-10z" fill="#1877F2"/></svg>` }, { label: "LinkedIn Ads", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5"><path fill="#0A66C2" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-12 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-2 2h4v7H5v-7zm12 0h-4v2.5c0 .8.6 1.5 1.5 1.5s1.5-.7 1.5-1.5V12h1v5a3 3 0 0 1-6 0v-5h4v-1h-4v-1h4v-1z"/></svg>` }, { label: "SEO", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current text-gray-800"><path d="M10.89 16.22c-2.2.46-4.38-.89-4.84-3.09-.46-2.2.89-4.38 3.09-4.84 2.2-.46 4.38.89 4.84 3.09.46 2.2-.89 4.38-3.09 4.84zm-2.12-5.75c-.9.19-1.46 1.13-1.27 2.03.19.9 1.13 1.46 2.03 1.27.9-.19 1.46-1.13 1.27-2.03-.19-.9-1.13-1.46-2.03-1.27zm10.37-4.14L15 2.19l-4.22 4.14-1.5-1.55-2.3 2.24 1.52 1.58-1.52 1.53 2.3 2.24 1.5-1.55 4.22 4.14 4.14-4.22-1.55-1.5 2.24-2.3 1.58-1.52 1.53 1.52z"/></svg>` }, { label: "CRO", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" fill="#14B8A6"/></svg>` }, { label: "Analytics", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5"><rect x="4" y="9" width="4" height="11" fill="#FFB300"/><rect x="10" y="4" width="4" height="16" fill="#FFB300"/><rect x="16" y="12" width="4" height="8" fill="#FFB300"/></svg>` }, { label: "n8n Automations", svg: `<svg viewBox="0 0 24 24" class="w-5 h-5"><circle cx="6" cy="6" r="3" fill="#FF6363"/><circle cx="18" cy="6" r="3" fill="#FF6363"/><circle cx="6" cy="18" r="3" fill="#FF6363"/><circle cx="18" cy="18" r="3" fill="#FF6363"/><path d="M9 6h6M6 9v6M9 18h6M18 9v6" stroke="#FF6363" stroke-width="2" fill="none"/></svg>` }, ];
+        const problems = [ { t: "Leads come. Visits don't.", d: "Quality score, scoring logic, and WhatsApp handoff are missing.", fixes:["Lead score + routing","Visit nudges","Offer clarity on LP"], cta: "Fix Lead Quality" }, { t: "Media spend. No attribution.", d: "Blind spots in analytics and CRM mapping.", fixes:["Event architecture","UTM discipline","Source → revenue"], cta: "Get Attribution" }, { t: "Pretty site. No conversions.", d: "Weak offer, friction, slow vitals.", fixes:["Value prop + proof","Speed budget","Form trims"], cta: "Lift Conversions" }, { t: "Founders do everything", d: "No repeatable system. No delegation.", fixes:["n8n workflows","CRM cadences","Weekly metric rhythm"], cta: "Systemize Growth" }, { t: "Launch soon. Zero momentum.", d: "No audience, no angle, no content stack.", fixes:["Pre-launch list + hooks","Founder POV content","Warm media bursts"], cta: "Kickstart Launch" }, { t: "Inconsistent brand story", d: "Scattered assets and mixed tone.", fixes:["Core narrative","Visual system","Reusable blocks"], cta: "Tighten Story" }, ];
+        const solutions = [ { t: "Digital Presence Creation", d: "Websites that convert. Films that sell the story. Launch assets that set you up for scale.", pts: ["Conversion-first websites","Corporate films & explainers","Launch pages & brand kits"], cta: "See Builds" }, { t: "Maintaining the Presence", d: "Monthly retainer for media, content, SEO, analytics, and automation.", pts: ["Google • Meta • LinkedIn","Editorial calendar & shorts","Technical & on-page SEO","n8n + CRM workflows"], cta: "View Retainers" }, { t: "Growth Consultation", d: "Strategy sprints and audits that remove guesswork and set clear KPI targets.", pts: ["Offer & funnel mapping","Media & CRO playbooks","Digital PR blueprint"], cta: "Book a Sprint" }, ];
+        const blogs = [ { t: "Manufacturing lead gen beyond trade fairs", d: "Playbooks for steady enquiry flow with media + content + automation." }, { t: "Pre-launch funnels for real estate", d: "Why quality beats volume and how to score leads for site visits." }, { t: "Your first 90 days of marketing", d: "A founder's checklist for zero-to-digital with momentum." }, ];
 
-        // Initialize mobile menu
-        function initMobileMenu() {
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', () => {
-                    const isHidden = mobileMenu.classList.contains('hidden');
-                    mobileMenu.classList.toggle('hidden');
-                    menuBtn.setAttribute('aria-expanded', !isHidden);
-                });
-            }
-        }
+        // --- INJECTION & RENDERING ---
+        const rotatingBanner = document.getElementById('rotating-banner');
+        rotatingLines.forEach((line) => { rotatingBanner.innerHTML += `<div class="banner-line absolute inset-0 transition-all duration-700 ease-in-out transform opacity-0 -translate-y-full flex items-center justify-center"><h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 text-balance">${line}</h1></div>`; });
+        
+        const chipsContainer = document.getElementById('chips-container');
+        const chipRow = chips.map(({label, svg}) => `<span class="px-4 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 inline-flex items-center gap-2.5 whitespace-nowrap shadow-sm hover:shadow-md hover:border-[#e25101] transition-all cursor-pointer">${svg}<span>${label}</span></span>`).join('');
+        chipsContainer.innerHTML = `<div class="flex items-center gap-4 pr-4">${chipRow}</div><div class="flex items-center gap-4 pr-4" aria-hidden="true">${chipRow}</div>`;
+        
+        const problemsGrid = document.getElementById('problems-grid');
+        problemsGrid.innerHTML = problems.map(p => `<article class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d glow-border cursor-pointer" onclick="window.location.href='contact.html'"><h3 class="text-xl font-semibold mb-3">${p.t}</h3><p class="mt-2 text-sm text-gray-600 mb-4">${p.d}</p><div class="mt-4 text-sm"><p class="font-medium text-gray-500 mb-2">First fix:</p><ul class="list-disc pl-5 mt-1 space-y-1">${p.fixes.map(f => `<li>${f}</li>`).join('')}</ul></div><div class="mt-6 inline-block font-semibold text-[#e25101]">${p.cta} <span class="group-hover:ml-1 transition-all">→</span></div></article>`).join('');
+        
+        const solutionsGrid = document.getElementById('solutions-grid');
+        solutionsGrid.innerHTML = solutions.map(s => `<div class="p-8 rounded-2xl border-2 border-gray-200 bg-white/80 backdrop-blur flex flex-col hover:shadow-2xl hover:-translate-y-2 hover:border-[#e25101] transition-all duration-300 card-3d"><h3 class="text-2xl font-bold mb-3">${s.t}</h3><p class="mt-3 text-gray-600 mb-6">${s.d}</p><ul class="mt-6 text-gray-700 list-disc pl-5 space-y-2 flex-1">${s.pts.map(pt => `<li key="${pt}">${pt}</li>`).join('')}</ul><a href="contact.html" class="mt-8 inline-block px-6 py-3 rounded-lg border border-gray-300 font-semibold hover:border-[#e25101] hover:bg-[#e25101] hover:text-white w-fit transition-colors">${s.cta}</a></div>`).join('');
+        
+        const blogsGrid = document.getElementById('blogs-grid');
+        blogsGrid.innerHTML = blogs.map(b => `<article class="group p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-3d"><h4 class="text-xl font-bold mb-3">${b.t}</h4><p class="text-gray-600 mt-3 mb-6">${b.d}</p><a href="#" class="mt-6 inline-block font-semibold text-[#e25101]">Read post <span class="group-hover:ml-1 transition-all">→</span></a></article>`).join('');
+        
+        document.getElementById('footer-year').innerText = `© ${new Date().getFullYear()} Sphurit Technologies Pvt Ltd. All rights reserved.`;
 
-        // Animate numbers with requestAnimationFrame
-        function animateNumber(element, target, duration = 2000) {
-            const start = 0;
-            const startTime = performance.now();
-            
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                // Ease out function
-                const easeOut = 1 - Math.pow(1 - progress, 3);
-                const current = Math.floor(start + (target - start) * easeOut);
-                
-                element.textContent = current.toLocaleString();
-                
-                if (progress < 1) {
-                    requestAnimationFrame(update);
+        // --- INTERACTIVITY ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { menuBtn.setAttribute('aria-expanded', menuBtn.getAttribute('aria-expanded') !== 'true'); mobileMenu.classList.toggle('hidden'); });
+        
+        const bannerLines = document.querySelectorAll('.banner-line');
+        let bannerIdx = 0;
+        function showNextLine() { bannerLines.forEach((line, i) => { line.classList.toggle('opacity-0', i !== bannerIdx); line.classList.toggle('-translate-y-full', i !== bannerIdx); line.classList.toggle('translate-y-0', i === bannerIdx); }); bannerIdx = (bannerIdx + 1) % bannerLines.length; }
+        showNextLine(); setInterval(showNextLine, 5600);
+        
+        const counterObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const el = entry.target; const to = parseInt(el.dataset.to, 10); const suffix = el.dataset.suffix || ""; const duration = 1700; let start = null; const step = (ts) => { if (!start) start = ts; const p = Math.min((ts - start) / duration, 1); el.textContent = Math.floor((1 - Math.pow(2, -10 * p)) * to).toLocaleString('en-IN') + suffix; if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); counterObserver.unobserve(el); } }); }, { threshold: 0.6 });
+        document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+        // Scroll animations
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
                 }
-            }
-            
-            requestAnimationFrame(update);
-        }
-
-        // Setup counter observer
-        function setupCountObserver() {
-            const counters = document.querySelectorAll('[data-counter]');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = parseInt(entry.target.dataset.counter);
-                        animateNumber(entry.target, target);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            counters.forEach(counter => observer.observe(counter));
-        }
-
-        // Initialize tilt effect
-        function initTilt() {
-            document.querySelectorAll('.tilt-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-                    
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-                });
             });
-        }
+        }, { threshold: 0.1 });
 
-        // Fade up animation observer
-        function setupFadeUpObserver() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-        }
+        document.querySelectorAll('.scroll-animate').forEach(el => scrollObserver.observe(el));
+        
+    }); // End DOMContentLoaded
 
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            includeHTML('#navbar-placeholder', 'navbar.html');
-            includeHTML('#footer-placeholder', 'footer.html');
-            setupCountObserver();
-            initTilt();
-            setupFadeUpObserver();
-        });
+    // --- General Modal Logic ---
+    const enquiryModal = document.getElementById('enquiry-modal');
+    const enquiryModalContent = document.getElementById('modal-content');
+    function openEnquiryModal() { enquiryModal.classList.remove('hidden'); setTimeout(() => { enquiryModal.classList.remove('opacity-0'); enquiryModalContent.classList.remove('scale-95'); }, 10); }
+    function closeEnquiryModal() { enquiryModal.classList.add('opacity-0'); enquiryModalContent.classList.add('scale-95'); setTimeout(() => { enquiryModal.classList.add('hidden'); }, 300); }
+    enquiryModal.addEventListener('click', (e) => { if (e.target === enquiryModal) closeEnquiryModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === "Escape") { if (!enquiryModal.classList.contains('hidden')) closeEnquiryModal(); } });
 
-        // Reduced motion support
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.documentElement.style.setProperty('--animation-duration', '0s');
-        }
     </script>
+
 </body>
 </html>

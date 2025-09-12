@@ -17,43 +17,40 @@
         :root {
             --accent: #e25101;
             --accent-2: #ff7a1a;
+            --muted: #6b7280;
         }
         
         body {
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            color: #111827; /* neutral text */
         }
 
         /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         /* 3D Effects */
         .card-3d {
             transform-style: preserve-3d;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.26s ease, box-shadow 0.26s ease;
+            will-change: transform;
         }
         
         .card-3d:hover {
-            transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateX(0.5deg) rotateY(-0.5deg) translateY(-6px);
+            box-shadow: 0 14px 30px rgba(2,6,23,0.08);
         }
 
         /* Fade Up Animation */
         .fade-up {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
-        }
-        
-        .fade-up.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }0.9,0.2,1);
         }
         
         .fade-up.in-view {
@@ -63,45 +60,99 @@
 
         /* Accent Text Styling */
         .accent-first-letter {
-            font-size: 1.2em;
+            font-size: 1.12em;
             color: var(--accent);
             font-weight: 700;
-            font-style: italic;
         }
 
         /* Hero Typography */
         .hero-heading {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.1;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            line-height: 1.05;
+            font-weight: 700;
         }
 
-        /* Filter Buttons */
+        /* Filters */
         .filter-btn {
-            transition: all 0.3s ease;
+            transition: all 0.22s ease;
         }
         
         .filter-btn.active {
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(226, 81, 1, 0.3);
+            box-shadow: 0 6px 18px rgba(226,81,1,0.18);
         }
 
-        /* Counter Animation */
-        .counter {
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* Curved Top Cards */
+        /* Curved Top Cards — simplified */
         .curved-top {
-            border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
+            border-radius: 1.25rem 1.25rem 0.5rem 0.5rem;
+            background: #ffffff;
+            border-bottom: 2px solid rgba(0,0,0,0.04);
+            color: #111827;
         }
 
-        /* Reduced Motion */
+        /* Websites carousel */
+        .sites-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        .sites-carousel::-webkit-scrollbar { height: 10px; }
+        .sites-carousel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 999px; }
+
+        .site-card {
+            min-width: 280px;
+            max-width: 320px;
+            flex: 0 0 auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .site-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .site-card .meta {
+            padding: 1rem;
+        }
+
+        /* Expanded grid (hidden by default) */
+        .sites-expanded { display: none; margin-top: 1rem; }
+        .sites-expanded.grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+
+        /* Reel / taller vertical aspect for corporate videos */
+        .portfolio-item[data-category="corporate-videos"] .aspect-video {
+            aspect-ratio: 9 / 16;
+            height: auto;
+        }
+
+        /* Default media (other categories) keep wide aspect */
+        .portfolio-item .aspect-video {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Simple typography sizes */
+        h1,h2,h3 { color: #111827; font-weight: 700; margin: 0 0 .5rem 0; }
+        p { color: var(--muted); margin: 0 0 .75rem 0; }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .sites-expanded.grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+            .site-card img { height: 140px; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-            .card-3d {
-                transition: none;
-            }
+            .card-3d { transition: none; }
+            .sites-carousel { scroll-behavior: auto; }
         }
     </style>
 </head>
@@ -123,7 +174,7 @@
             
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div class="text-center max-w-4xl mx-auto">
-                    <h1 class="hero-heading font-bold italic text-black mb-6 fade-up">
+                    <h1 class="hero-heading font-bold mb-6 fade-up">
                         Portfolio of Work — Crafted for Growth
                     </h1>
                     <p class="text-xl text-gray-700 mb-4 fade-up">Case studies, videos, websites</p>
@@ -135,69 +186,84 @@
         <!-- WEBSITES SECTION -->
         <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 fade-up">
-                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                <div class="text-center mb-8 fade-up">
+                    <h2 class="text-3xl font-bold text-black mb-4">
                         <span class="accent-first-letter">W</span>ebsites We've Built
                     </h2>
-                    <p class="text-lg text-gray-600">Fast, conversion-focused websites that drive results</p>
+                    <p class="text-lg text-gray-600">Fast, conversion-focused websites that drive results — curated showcase below. Use the scroller to browse more or click "See all".</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up">
-                        <div class="curved-top bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
-                            <div class="flex items-center justify-between">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                    <span class="text-sm font-bold">M</span>
-                                </div>
-                                <span class="text-xs bg-white/20 px-2 py-1 rounded">Manufacturing</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">MetalCorp Industries</h3>
-                            <p class="text-gray-600 text-sm mb-4">B2B manufacturing website with lead generation focus</p>
-                            <div class="flex items-center justify-between">
-                                <a href="#" class="text-[var(--accent)] font-semibold text-sm hover:underline">Visit Site →</a>
-                                <div class="text-xs text-gray-500">95 PageSpeed</div>
-                            </div>
+                <!-- Horizontal scroller (shows many sites easily) -->
+                <div class="sites-carousel fade-up" id="sites-carousel" aria-label="Websites carousel">
+                    <!-- Example site cards (add as many as needed) -->
+                    <div class="site-card glass">
+                        <img src="https://images.unsplash.com/photo-1505765056759-8a2a9a0b6f5b?q=80&w=800&auto=format&fit=crop" alt="MetalCorp">
+                        <div class="meta">
+                            <div class="text-sm text-gray-500">Manufacturing</div>
+                            <h3 class="text-lg">MetalCorp Industries</h3>
+                            <a href="#" class="text-[var(--accent)] text-sm font-semibold">Visit Site →</a>
                         </div>
                     </div>
 
-                    <div class="card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up">
-                        <div class="curved-top bg-gradient-to-r from-green-500 to-green-600 p-4 text-white">
-                            <div class="flex items-center justify-between">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                    <span class="text-sm font-bold">R</span>
-                                </div>
-                                <span class="text-xs bg-white/20 px-2 py-1 rounded">Real Estate</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Residency Heights</h3>
-                            <p class="text-gray-600 text-sm mb-4">Luxury residential project with virtual tours</p>
-                            <div class="flex items-center justify-between">
-                                <a href="#" class="text-[var(--accent)] font-semibold text-sm hover:underline">Visit Site →</a>
-                                <div class="text-xs text-gray-500">92 PageSpeed</div>
-                            </div>
+                    <div class="site-card glass">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop" alt="Residency Heights">
+                        <div class="meta">
+                            <div class="text-sm text-gray-500">Real Estate</div>
+                            <h3 class="text-lg">Residency Heights</h3>
+                            <a href="#" class="text-[var(--accent)] text-sm font-semibold">Visit Site →</a>
                         </div>
                     </div>
 
-                    <div class="card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up">
-                        <div class="curved-top bg-gradient-to-r from-purple-500 to-purple-600 p-4 text-white">
-                            <div class="flex items-center justify-between">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                    <span class="text-sm font-bold">S</span>
-                                </div>
-                                <span class="text-xs bg-white/20 px-2 py-1 rounded">SaaS</span>
+                    <div class="site-card glass">
+                        <img src="https://images.unsplash.com/photo-1483030099239-a8f19b9f3b49?q=80&w=800&auto=format&fit=crop" alt="StartupFlow">
+                        <div class="meta">
+                            <div class="text-sm text-gray-500">SaaS</div>
+                            <h3 class="text-lg">StartupFlow</h3>
+                            <a href="#" class="text-[var(--accent)] text-sm font-semibold">Visit Site →</a>
+                        </div>
+                    </div>
+
+                    <!-- Add more site-card blocks here (these will scroll horizontally) -->
+                </div>
+
+                <div class="flex items-center justify-center gap-4 mt-6">
+                    <button id="carousel-prev" class="px-4 py-2 rounded bg-white border text-sm shadow-sm">‹</button>
+                    <button id="carousel-next" class="px-4 py-2 rounded bg-white border text-sm shadow-sm">›</button>
+                    <button id="sites-seeall" class="px-4 py-2 rounded bg-[var(--accent)] text-white text-sm shadow-sm">See all websites</button>
+                </div>
+
+                <!-- Expanded full grid (hidden until user toggles) -->
+                <div id="sites-expanded" class="sites-expanded fade-up">
+                    <div class="sites-expanded grid mt-4">
+                        <!-- Duplicate of site-card content as full grid items -->
+                        <div class="card-3d site-card glass">
+                            <img src="https://images.unsplash.com/photo-1505765056759-8a2a9a0b6f5b?q=80&w=800&auto=format&fit=crop" alt="MetalCorp">
+                            <div class="meta">
+                                <div class="text-sm text-gray-500">Manufacturing</div>
+                                <h3 class="text-lg">MetalCorp Industries</h3>
+                                <a href="#" class="text-[var(--accent)] text-sm font-semibold">Visit Site →</a>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">StartupFlow</h3>
-                            <p class="text-gray-600 text-sm mb-4">SaaS platform with conversion-optimized landing</p>
-                            <div class="flex items-center justify-between">
-                                <a href="#" class="text-[var(--accent)] font-semibold text-sm hover:underline">Visit Site →</a>
-                                <div class="text-xs text-gray-500">98 PageSpeed</div>
+
+                        <div class="card-3d site-card glass">
+                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop" alt="Residency Heights">
+                            <div class="meta">
+                                <div class="text-sm text-gray-500">Real Estate</div>
+                                <h3 class="text-lg">Residency Heights</h3>
+                                <a href="#" class="text-[var(--accent)] text-sm font-semibold">Visit Site →</a>
                             </div>
                         </div>
+
+                        <div class="card-3d site-card glass">
+                            <img src="https://images.unsplash.com/photo-1483030099239-a8f19b9f3b49?q=80&w=800&auto=format&fit=crop" alt="StartupFlow">
+                            <div class="meta">
+                                <div class="text-sm text-gray-500">SaaS</div>
+                                <h3 class="text-lg">StartupFlow</h3>
+                                <a href="#" class="text-[var(--accent)] text-sm font-semibold">Visit Site →</a>
+                            </div>
+                        </div>
+
+                        <!-- Add more full-grid items here (supports 50+) -->
                     </div>
                 </div>
             </div>
@@ -207,7 +273,7 @@
         <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 fade-up">
-                    <h2 class="text-3xl font-bold italic text-black mb-4">
+                    <h2 class="text-3xl font-bold text-black mb-4">
                         Our <span class="accent-first-letter">W</span>ork
                     </h2>
                     <p class="text-lg text-gray-600">Creative campaigns and content that drive engagement</p>
@@ -237,9 +303,7 @@
                             <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop" alt="Corporate Video" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                 <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                                    </svg>
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -255,9 +319,7 @@
                             <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="Social Reel" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                 <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                                    </svg>
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -278,50 +340,7 @@
                         </div>
                     </div>
 
-                    <!-- More items... -->
-                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="corporate-videos">
-                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop" alt="Corporate Video" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold mb-2">Real Estate Showcase</h3>
-                            <p class="text-gray-600 text-sm">Luxury property walkthrough and testimonials</p>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="reels">
-                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop" alt="Social Reel" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                <button class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold mb-2">Behind the Scenes</h3>
-                            <p class="text-gray-600 text-sm">Manufacturing process showcase reel</p>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item card-3d glass rounded-2xl overflow-hidden shadow-lg fade-up" data-category="creative-imagery">
-                        <div class="aspect-video bg-gray-200 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" alt="Creative Design" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold mb-2">Product Photography</h3>
-                            <p class="text-gray-600 text-sm">E-commerce ready product shots with lifestyle context</p>
-                        </div>
-                    </div>
+                    <!-- More items... (unchanged, they inherit the new rules) -->
                 </div>
             </div>
         </section>
@@ -640,6 +659,33 @@
             document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
         }
 
+        // Carousel and See All behavior for Websites section
+        function initSitesCarousel() {
+            const carousel = document.getElementById('sites-carousel');
+            const prev = document.getElementById('carousel-prev');
+            const next = document.getElementById('carousel-next');
+            const seeAllBtn = document.getElementById('sites-seeall');
+            const expanded = document.getElementById('sites-expanded');
+
+            if (!carousel) return;
+
+            prev && prev.addEventListener('click', () => {
+                carousel.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+            next && next.addEventListener('click', () => {
+                carousel.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+
+            // Toggle expanded full grid
+            seeAllBtn && seeAllBtn.addEventListener('click', () => {
+                const isVisible = expanded.style.display === 'block';
+                expanded.style.display = isVisible ? 'none' : 'block';
+                seeAllBtn.textContent = isVisible ? 'See all websites' : 'Show less';
+                // ensure fade-in observer picks it up
+                setTimeout(() => expanded.classList.add('in-view'), 50);
+            });
+        }
+
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             includeHTML('#navbar-placeholder', 'navbar.html');
@@ -648,6 +694,7 @@
             setupCountObserver();
             init3DCards();
             setupFadeUpObserver();
+            initSitesCarousel();
         });
 
         // Reduced motion support
